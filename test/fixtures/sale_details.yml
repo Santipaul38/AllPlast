@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  unit: 1
+  import: 1.5
+
+two:
+  unit: 1
+  import: 1.5
