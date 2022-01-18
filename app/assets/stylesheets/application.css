@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+
+/*TABLAS DE INDEX*/
+
+table{
+    width: 100%;
+    text-align: left;
+}
+
+td{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.render-rows{
+    border-bottom: 1px solid lightgray;
+}
+
+/*NAVBAR (De application layout)*/
+
+
+
+
+
+
