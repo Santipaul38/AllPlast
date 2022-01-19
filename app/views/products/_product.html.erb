@@ -1,7 +1,7 @@
 <div id="<%= dom_id product %>">
   <% if action_name != "show" %>
     <tr class = "render-rows">
-      <td><%= product.category %></td>
+      <td><%= product.category.name %></td>
       <td><%= product.name %></td>
       <td>$<%= product.price %></td>
       <td><%= product.stock %></td>
@@ -14,7 +14,7 @@
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Category:</strong>
-      <%= product.category %>
+      <%= product.category.name %>
     </p>
 
     <p class="my-5">

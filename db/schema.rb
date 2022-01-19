@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_18_123113) do
+ActiveRecord::Schema.define(version: 2022_01_17_214601) do
 
   create_table "bills", force: :cascade do |t|
     t.float "total"
@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 2022_01_18_123113) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "category_products", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "category_id", null: false
-    t.integer "product_id", null: false
-    t.index ["category_id"], name: "index_category_products_on_category_id"
-    t.index ["product_id"], name: "index_category_products_on_product_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -57,6 +48,8 @@ ActiveRecord::Schema.define(version: 2022_01_18_123113) do
     t.datetime "registration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "sale_details", force: :cascade do |t|
@@ -83,8 +76,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_123113) do
     t.index ["price_list_id"], name: "index_sales_on_price_list_id"
   end
 
-  add_foreign_key "category_products", "categories"
-  add_foreign_key "category_products", "products"
+  add_foreign_key "products", "categories"
   add_foreign_key "sale_details", "products"
   add_foreign_key "sale_details", "sales"
   add_foreign_key "sales", "bills"
