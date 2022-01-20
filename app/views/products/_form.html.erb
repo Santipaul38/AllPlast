@@ -1,7 +1,7 @@
 <%= form_with(model: product, class: "contents") do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <h2><%= pluralize(product.errors.count, "error") %> prohibió a este producto de ser guardado:</h2>
 
       <ul>
         <% product.errors.each do |error| %>
@@ -12,12 +12,17 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :name %>
+    <%= form.label :categorías %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full") %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :nombre %>
     <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :price %>
+    <%= form.label :precio %>
     <%= form.text_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -27,7 +32,7 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :registration_date %>
+    <%= form.label :fecha_de_registro %>
     <%= form.datetime_field :registration_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 

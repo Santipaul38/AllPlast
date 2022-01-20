@@ -1,14 +1,27 @@
-<div class="w-full">
+<div class="w-full"> 
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Sale details</h1>
-    <%= link_to 'New sale detail', new_sale_detail_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl">Detalles de ventas</h1>
+    <%= link_to 'Cargar detalle de venta ⭱', new_sale_detail_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="sale_details" class="min-w-full">
-    <%= render @sale_details %>
-  </div>
+  <br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Unidad</th>
+        <th>Importe</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render @sale_details %>
+    </tbody>
+  </table>
+
 </div>

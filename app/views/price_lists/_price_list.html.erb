@@ -10,8 +10,25 @@
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this price list", price_list, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this price list', edit_price_list_path(price_list), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+    <tr class = "render-rows">
+      <td><%= price_list.date %></td>
+      <td>%<%= price_list.percentage %></td>
+
+      <td><%= link_to "Ver", price_list, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td><%= link_to 'Editar', edit_price_list_path(price_list), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
+    </tr>
+
+  <% else %>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Fecha:</strong>
+      <%= price_list.date %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Porcentaje:</strong>
+      %<%= price_list.percentage %>
+    </p>
+    
+  <%end%>
 </div>

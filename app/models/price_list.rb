@@ -1,3 +1,3 @@
 class PriceList < ApplicationRecord
-    has_many :price_lists
+    has_many :sales
 end

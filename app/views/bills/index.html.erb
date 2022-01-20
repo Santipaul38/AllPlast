@@ -4,11 +4,23 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Bills</h1>
-    <%= link_to 'New bill', new_bill_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl">Facturas</h1>
+    <%= link_to 'Cargar factura ⭱', new_bill_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="bills" class="min-w-full">
-    <%= render @bills %>
-  </div>
+  <br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Total</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render @bills %>
+    </tbody>
+  </table>
+
 </div>

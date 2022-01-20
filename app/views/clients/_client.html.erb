@@ -1,32 +1,42 @@
 <div id="<%= dom_id client %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= client.name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Surname:</strong>
-    <%= client.surname %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Business:</strong>
-    <%= client.business %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Phone number:</strong>
-    <%= client.phone_number %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Email:</strong>
-    <%= client.email %>
-  </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this client", client, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this client', edit_client_path(client), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <tr class = "render-rows">
+      <td><%= client.name %></td>
+      <td><%= client.surname %></td>
+      <td><%= client.business %></td>
+      <td><%= client.phone_number %></td>
+      <td><%= client.email %></td>
+
+      <td><%= link_to "Ver", client, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td><%= link_to 'Editar', edit_client_path(client), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
+
+  <% else %>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Nombre:</strong>
+      <%= client.name %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Apellido:</strong>
+      <%= client.surname %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Negocio:</strong>
+      <%= client.business %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Teléfono:</strong>
+      <%= client.phone_number %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Correo:</strong>
+      <%= client.email %>
+    </p>
+
+  <%end%>
 </div>
