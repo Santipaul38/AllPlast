@@ -4,11 +4,27 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Clients</h1>
-    <%= link_to 'New client', new_client_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl">Clientes</h1>
+    <%= link_to 'Cargar cliente ⭱', new_client_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="clients" class="min-w-full">
-    <%= render @clients %>
-  </div>
+  <br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Negocio</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render @clients %>
+    </tbody>
+  </table>
+
 </div>

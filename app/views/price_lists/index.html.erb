@@ -4,11 +4,23 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Price lists</h1>
-    <%= link_to 'New price list', new_price_list_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl">Listas de precios</h1>
+    <%= link_to 'Cargar lista de precios ⭱', new_price_list_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="price_lists" class="min-w-full">
-    <%= render @price_lists %>
-  </div>
+ <br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Porcentaje</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render @price_lists %>
+    </tbody>
+  </table>
 </div>

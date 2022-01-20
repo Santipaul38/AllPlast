@@ -25,7 +25,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       if @bill.save
-        format.html { redirect_to bill_url(@bill), notice: "Bill was successfully created." }
+        format.html { redirect_to bill_url(@bill), notice: "La factura fue creada satisfactoriamente." }
         format.json { render :show, status: :created, location: @bill }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class BillsController < ApplicationController
   def update
     respond_to do |format|
       if @bill.update(bill_params)
-        format.html { redirect_to bill_url(@bill), notice: "Bill was successfully updated." }
+        format.html { redirect_to bill_url(@bill), notice: "La factura fue actualizada satifactoriamente." }
         format.json { render :show, status: :ok, location: @bill }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class BillsController < ApplicationController
     @bill.destroy
 
     respond_to do |format|
-      format.html { redirect_to bills_url, notice: "Bill was successfully destroyed." }
+      format.html { redirect_to bills_url, notice: "La factura fue eliminada satisfactoriamente." }
       format.json { head :no_content }
     end
   end

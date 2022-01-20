@@ -1,7 +1,7 @@
-<%= form_with(model: sale_detail, class: "contents") do |form| %>
+<%= form_with(model: sale_detail, class: "contents") do |form| %> 
   <% if sale_detail.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(sale_detail.errors.count, "error") %> prohibited this sale_detail from being saved:</h2>
+      <h2><%= pluralize(sale_detail.errors.count, "error") %> prohibió al detalle de venta ser guardado:</h2>
 
       <ul>
         <% sale_detail.errors.each do |error| %>
@@ -12,12 +12,22 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :unit %>
+    <%= form.label :producto %>
+    <%= form.collection_select(:product_id, Product.all, :id, :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full") %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :venta %>
+    <%= form.collection_select(:sale_id, Sale.all, :id, :number_bill, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full") %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :unidad %>
     <%= form.number_field :unit, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :import %>
+    <%= form.label :importe %>
     <%= form.text_field :import, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 

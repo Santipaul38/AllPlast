@@ -6,10 +6,10 @@
 
     <%= render @price_list %>
 
-    <%= link_to 'Edit this price_list', edit_price_list_path(@price_list), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Editar', edit_price_list_path(@price_list), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
-      <%= button_to 'Destroy this price_list', price_list_path(@price_list), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to '× Eliminar lista de precios ×', price_list_path(@price_list), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-500 font-medium" %>
     </div>
-    <%= link_to 'Back to price_lists', price_lists_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to '❮ Volver', price_lists_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

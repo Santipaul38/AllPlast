@@ -1,17 +1,25 @@
 <div id="<%= dom_id sale_detail %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Unit:</strong>
-    <%= sale_detail.unit %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Import:</strong>
-    <%= sale_detail.import %>
-  </p>
-
   <% if action_name != "show" %>
-    <%= link_to "Show this sale detail", sale_detail, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this sale detail', edit_sale_detail_path(sale_detail), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+
+   <tr class = "render-rows">
+      <td><%= sale_detail.unit %></td>
+      <td>$<%= sale_detail.import %></td>
+
+      <td><%= link_to "Ver", sale_detail, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td><%= link_to 'Editar', edit_sale_detail_path(sale_detail), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
+    <tr>
+
+  <% else %>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Unidad:</strong>
+      <%= sale_detail.unit %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Importe:</strong>
+      $<%= sale_detail.import %>
+    </p>
+  
+  <%end%>
 </div>

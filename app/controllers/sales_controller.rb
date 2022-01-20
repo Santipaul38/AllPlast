@@ -25,7 +25,7 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to sale_url(@sale), notice: "Sale was successfully created." }
+        format.html { redirect_to sale_url(@sale), notice: "La venta fue satisfactoriamente creada." }
         format.json { render :show, status: :created, location: @sale }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class SalesController < ApplicationController
   def update
     respond_to do |format|
       if @sale.update(sale_params)
-        format.html { redirect_to sale_url(@sale), notice: "Sale was successfully updated." }
+        format.html { redirect_to sale_url(@sale), notice: "La venta fue satisfactoriamente actualizada." }
         format.json { render :show, status: :ok, location: @sale }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class SalesController < ApplicationController
     @sale.destroy
 
     respond_to do |format|
-      format.html { redirect_to sales_url, notice: "Sale was successfully destroyed." }
+      format.html { redirect_to sales_url, notice: "La venta fue satisfactoriamente destruida." }
       format.json { head :no_content }
     end
   end

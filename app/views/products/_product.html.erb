@@ -1,29 +1,29 @@
 <div id="<%= dom_id product %>">
   <% if action_name != "show" %>
+
     <tr class = "render-rows">
-      <td><%= product.category.name %></td>
       <td><%= product.name %></td>
       <td>$<%= product.price %></td>
       <td><%= product.stock %></td>
       <td><%= product.registration_date %></td>
         
-      <td><%= link_to "Show this product", product, class: "rounded-lg py-2 px-5 bg-gray-100 inline-block font-medium" %></td>
-      <td><%= link_to 'Edit this product', edit_product_path(product), class: "rounded-lg py-2 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td><%= link_to "Ver", product, class: "rounded-lg py-2 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td><%= link_to 'Editar', edit_product_path(product), class: "rounded-lg py-2 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
     </tr>
+
   <% else %>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Category:</strong>
-      <%= product.category.name %>
+      <strong class="block font-medium mb-1">Categoria/s:</strong>
     </p>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Name:</strong>
+      <strong class="block font-medium mb-1">Descripción:</strong>
       <%= product.name %>
     </p>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Price:</strong>
+      <strong class="block font-medium mb-1">Precio:</strong>
       $<%= product.price %>
     </p>
 
@@ -33,7 +33,7 @@
     </p>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Registration date:</strong>
+      <strong class="block font-medium mb-1">Fecha de registro:</strong>
       <%= product.registration_date %>
     </p>
 
