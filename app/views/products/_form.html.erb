@@ -32,12 +32,17 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :category_product_id %>
-    <%= form.collection_select(:category_product_id, @categories, :id, :name) %>
+      <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, {}, {multiple: true}) do |ds| %>
+          <%= ds.label(class:"container") do %>
+            <%= ds.check_box %>
+            <%= ds.object.name %>
+          <% end %>
+        <% end %>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
+
 <% end %>
 
