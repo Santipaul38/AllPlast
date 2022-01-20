@@ -24,7 +24,10 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_url(@product), notice: "El producto fue satisfactoriamente creado." }
+        format.html do
+          redirect_to product_url(@product),
+                      notice: 'El producto fue satisfactoriamente creado.'
+        end
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +42,10 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to product_url(@product), notice: "El producto fue satisfactoriamente actualizado." }
+        format.html do
+          redirect_to product_url(@product),
+                      notice: 'El producto fue satisfactoriamente actualizado.'
+        end
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,10 +58,14 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1 or /products/1.json
   def destroy
+    CategoryProduct.where(product_id: @product.id).destroy_all
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to products_url, notice: "El producto fue satisfactoriamente eliminado." }
+      format.html do
+        redirect_to products_url,
+                    notice: 'El producto fue satisfactoriamente eliminado.'
+      end
       format.json { head :no_content }
     end
   end
