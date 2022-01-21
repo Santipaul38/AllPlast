@@ -27,11 +27,6 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :fecha_de_registro %>
-    <%= form.datetime_field :registration_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
       <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, {}, {multiple: true}) do |ds| %>
           <%= ds.label(class:"container") do %>
             <%= ds.check_box %>

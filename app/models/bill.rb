@@ -1,7 +1,6 @@
 class Bill < ApplicationRecord
-    has_many :sales
+  belongs_to :sale
 
-    validates_presence_of :total, message: "Ingresar el dato correspondiente"
-    validates :total, numericality: { only_float: true }
-
+  validates_presence_of :total, message: 'Ingresar el dato correspondiente'
+  validates :total, numericality: { only_float: true }
 end

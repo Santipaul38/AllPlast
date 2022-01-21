@@ -5,7 +5,7 @@
       <td><%= product.name %></td>
       <td>$<%= product.price %></td>
       <td><%= product.stock %></td>
-      <td><%= product.registration_date %></td>
+      <td><%= product.registration_date.strftime("%d/%m/%Y %H:%M") %></td>
         
       <td><%= link_to "Ver", product, class: "rounded-lg py-2 px-5 bg-gray-100 inline-block font-medium" %></td>
       <td><%= link_to 'Editar', edit_product_path(product), class: "rounded-lg py-2 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
@@ -34,7 +34,7 @@
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Fecha de registro:</strong>
-      <%= product.registration_date %>
+      <%= product.registration_date.strftime("%d/%m/%Y %H:%M") %>
     </p>
 
   <%end%>

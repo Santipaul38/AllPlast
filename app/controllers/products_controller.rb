@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
+    @product.registration_date = DateTime.now
 
     respond_to do |format|
       if @product.save
@@ -41,6 +42,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1 or /products/1.json
   def update
     respond_to do |format|
+      @product.registration_date = DateTime.now
       if @product.update(product_params)
         format.html do
           redirect_to product_url(@product),
