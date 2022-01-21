@@ -1,7 +1,7 @@
 <%= form_with(model: price_list, class: "contents") do |form| %>
   <% if price_list.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(price_list.errors.count, "error") %> prohibited this price_list from being saved:</h2>
+      <h2><%= pluralize(price_list.errors.count, "error") %> prohibió a esta lista de precios de ser guardada:</h2>
 
       <ul>
         <% price_list.errors.each do |error| %>
@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :date %>
+    <%= form.label :fecha %>
     <%= form.datetime_field :date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :percentage %>
+    <%= form.label :porcentaje %>
     <%= form.text_field :percentage, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 

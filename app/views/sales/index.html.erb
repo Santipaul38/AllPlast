@@ -5,10 +5,25 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Sales</h1>
-    <%= link_to 'New sale', new_sale_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'Cargar venta ⭱', new_sale_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="sales" class="min-w-full">
-    <%= render @sales %>
-  </div>
+  <br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Monto</th>
+        <th>Lista de precios</th>
+        <th>Número de factura</th>
+        <th>Fecha</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render @sales %>
+    </tbody>
+  </table>
 </div>

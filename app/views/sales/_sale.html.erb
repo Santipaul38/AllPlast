@@ -1,17 +1,46 @@
 <div id="<%= dom_id sale %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Number bill:</strong>
-    <%= sale.number_bill %>
-  </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Date:</strong>
-    <%= sale.date %>
-  </p>
+  
 
   <% if action_name != "show" %>
-    <%= link_to "Show this sale", sale, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this sale', edit_sale_path(sale), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+
+    <tr class = "render-rows">
+      <td><%= sale.client.name %>" "<%= sale.client.surname %></td>
+      <td>$<%= sale.bill.total %></td>
+      <td><%= sale.price_list.percentage %></td>
+      <td><%= sale.number_bill %></td>
+      <td><%= sale.date %></td>
+
+      <td><%= link_to "Show this sale", sale, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td><%= link_to 'Edit this sale', edit_sale_path(sale), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
+    <tr>
+
+  <% else %>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Cliente:</strong>
+      <%= sale.client.name %>" "<%= sale.client.surname %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Monto:</strong>
+      <%= sale.bill.total %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Lista de precios:</strong>
+      <%= sale.price_list.percentage %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Número de factura:</strong>
+      <%= sale.number_bill %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Fecha:</strong>
+      <%= sale.date %>
+    </p>
+
+  <%end%>
 </div>

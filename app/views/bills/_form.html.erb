@@ -1,7 +1,7 @@
 <%= form_with(model: bill, class: "contents") do |form| %>
   <% if bill.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+      <h2><%= pluralize(bill.errors.count, "error") %> prohibió que esta factura sea guardada:</h2>
 
       <ul>
         <% bill.errors.each do |error| %>
@@ -14,6 +14,11 @@
   <div class="my-5">
     <%= form.label :total %>
     <%= form.text_field :total, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :sale %>
+    <%= form.collection_select(:sale, Sale.all, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full") %>
   </div>
 
   <div class="inline">

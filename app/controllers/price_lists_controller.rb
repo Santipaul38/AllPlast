@@ -25,7 +25,7 @@ class PriceListsController < ApplicationController
 
     respond_to do |format|
       if @price_list.save
-        format.html { redirect_to price_list_url(@price_list), notice: "Price list was successfully created." }
+        format.html { redirect_to price_list_url(@price_list), notice: "La lista de precios fue satisfactoriamente creada." }
         format.json { render :show, status: :created, location: @price_list }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class PriceListsController < ApplicationController
   def update
     respond_to do |format|
       if @price_list.update(price_list_params)
-        format.html { redirect_to price_list_url(@price_list), notice: "Price list was successfully updated." }
+        format.html { redirect_to price_list_url(@price_list), notice: "La lista de precios fue satisfactoriamente actualizada." }
         format.json { render :show, status: :ok, location: @price_list }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class PriceListsController < ApplicationController
     @price_list.destroy
 
     respond_to do |format|
-      format.html { redirect_to price_lists_url, notice: "Price list was successfully destroyed." }
+      format.html { redirect_to price_lists_url, notice: "La lista de precios fue satisfactoriamente eliminada." }
       format.json { head :no_content }
     end
   end
