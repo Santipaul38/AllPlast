@@ -3,7 +3,7 @@ class PriceListsController < ApplicationController
 
   # GET /price_lists or /price_lists.json
   def index
-    @price_lists = PriceList.all
+    @price_lists = PriceList.where(:expiration_date => nil)
   end
 
   # GET /price_lists/1 or /price_lists/1.json
@@ -22,6 +22,7 @@ class PriceListsController < ApplicationController
   # POST /price_lists or /price_lists.json
   def create
     @price_list = PriceList.new(price_list_params)
+    @price_list.date = DateTime.now - 3.hours
 
     respond_to do |format|
       if @price_list.save
@@ -36,14 +37,24 @@ class PriceListsController < ApplicationController
 
   # PATCH/PUT /price_lists/1 or /price_lists/1.json
   def update
-    respond_to do |format|
-      if @price_list.update(price_list_params)
-        format.html { redirect_to price_list_url(@price_list), notice: "La lista de precios fue satisfactoriamente actualizada." }
+    @oldList = PriceList.where(:id => @price_list.id, :expiration_date => nil).first
+    @oldList.expiration_date = DateTime.now -3.hours
+    @newList = PriceList.new()
+    @newList.name = @price_list.name
+    @newList.date = @price_list.date
+    @newList.percentage = @price_list.percentage
+    
+    #Actualizar fecha de vencimiento de la lista antigua y crear nueva lista con nuevos valores
+    if @newList.name != @oldList.name || @newList.percentage != @oldList.percentage
+      if @oldList.update(:expiration_date => DateTime.now - 3.hours ) && @newList.save
+        format.html { redirect_to price_lists_url, notice: "La lista de precios fue satisfactoriamente actualizada." }
         format.json { render :show, status: :ok, location: @price_list }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @price_list.errors, status: :unprocessable_entity }
       end
+    else
+      redirect_to price_lists_url
     end
   end
 
@@ -65,6 +76,6 @@ class PriceListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def price_list_params
-      params.require(:price_list).permit(:date, :percentage)
+      params.require(:price_list).permit(:name, :date, :expiration_date, :percentage)
     end
 end
