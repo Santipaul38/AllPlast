@@ -6,9 +6,8 @@
 
     <tr class = "render-rows">
       <td><%= sale.client.name %>" "<%= sale.client.surname %></td>
-      <td>$<%= sale.bill.total %></td>
       <td><%= sale.price_list.percentage %></td>
-      <td><%= sale.number_bill %></td>
+      <td><%= sale.id %></td>
       <td><%= sale.date %></td>
 
       <td><%= link_to "Show this sale", sale, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
@@ -23,18 +22,13 @@
     </p>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Monto:</strong>
-      <%= sale.bill.total %>
-    </p>
-
-    <p class="my-5">
       <strong class="block font-medium mb-1">Lista de precios:</strong>
       <%= sale.price_list.percentage %>
     </p>
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Número de factura:</strong>
-      <%= sale.number_bill %>
+      <%= sale.id %>
     </p>
 
     <p class="my-5">
