@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_182657) do
+ActiveRecord::Schema.define(version: 2022_01_22_203803) do
 
   create_table "bills", force: :cascade do |t|
     t.float "total"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_182657) do
     t.datetime "registration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "state"
   end
 
   create_table "sale_details", force: :cascade do |t|

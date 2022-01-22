@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.registration_date = DateTime.now - 3.hours
+    @product.state = 0
 
     respond_to do |format|
       if @product.save
@@ -83,6 +84,6 @@ class ProductsController < ApplicationController
   def product_params
     params
       .require(:product)
-      .permit(:name, :price, :stock, :registration_date, category_ids: [])
+      .permit(:name, :price, :state, :stock, :registration_date, category_ids: [])
   end
 end

@@ -67,8 +67,12 @@
   </head>
 
   <body class="h-full dark:text-black">
-    <main class="container mt-28 flex">
-      <%= yield %>
-    </main>
+    <div class="h-full my-20 mx-32 bg-gray-200 shadow-2xl rounded-2xl">
+      <div class="px-20 pt-16 flex">
+        <%= yield %>
+      </div>
+    </div>
+    <%= render 'layouts/footer' %>
   </body>
+  
 </html>
