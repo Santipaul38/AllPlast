@@ -20,6 +20,7 @@ class SalesController < ApplicationController
   # POST /sales or /sales.json
   def create
     @sale = Sale.new(sale_params)
+    @sale.date = DateTime.now - 3.hours
 
     respond_to do |format|
       if @sale.save
@@ -38,6 +39,7 @@ class SalesController < ApplicationController
   # PATCH/PUT /sales/1 or /sales/1.json
   def update
     respond_to do |format|
+      @sale.date = DateTime.now - 3.hours
       if @sale.update(sale_params)
         format.html do
           redirect_to sale_url(@sale),

@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_125245) do
+
+ActiveRecord::Schema.define(version: 2022_01_22_203803) do
 
   create_table "bills", force: :cascade do |t|
     t.float "total"
@@ -48,9 +49,12 @@ ActiveRecord::Schema.define(version: 2022_01_21_125245) do
   create_table "price_lists", force: :cascade do |t|
     t.datetime "date", precision: 6
     t.float "percentage"
+    t.datetime "expiration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "expiration_date", precision: 6
+    t.string "name"
+
   end
 
   create_table "products", force: :cascade do |t|
@@ -60,6 +64,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_125245) do
     t.datetime "registration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "state"
   end
 
   create_table "sale_details", force: :cascade do |t|

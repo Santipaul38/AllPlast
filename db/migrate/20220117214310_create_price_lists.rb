@@ -3,6 +3,7 @@ class CreatePriceLists < ActiveRecord::Migration[7.0]
     create_table :price_lists do |t|
       t.datetime :date
       t.float :percentage
+      t.string :name
       t.datetime :expiration_date
 
       t.timestamps
