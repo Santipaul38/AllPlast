@@ -6,13 +6,13 @@
       <td>$<%= product.price %></td>
       <td><%= product.stock %></td>
       <td><%= product.registration_date.strftime("%d/%m/%Y %H:%M") %></td>
-        
+      
       <td><%= link_to "Ver", product, class: "rounded-lg py-2 px-5 bg-gray-100 inline-block font-medium" %></td>
-      
-      <td><%= button_to '× Eliminar producto ×', product, method: :delete, class: "rounded-lg py-2 ml-2 px-5 bg-red-500 inline-block font-medium" %></td>
-      
       <td><%= link_to 'Editar', edit_product_path(product), class: "rounded-lg py-2 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td><%= link_to '× Eliminar producto ×', product, method: :delete, class: "rounded-lg py-2 ml-2 px-5 bg-red-500 inline-block font-medium" %></td>
+      
     </tr>
+      
 
   <% else %>
 

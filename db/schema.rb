@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_121117) do
   create_table "price_lists", force: :cascade do |t|
     t.datetime "date", precision: 6
     t.float "percentage"
+    t.datetime "expiration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,14 +74,11 @@ ActiveRecord::Schema.define(version: 2022_01_21_121117) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.integer "number_bill"
     t.datetime "date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "client_id", null: false
-    t.integer "bill_id", null: false
     t.integer "price_list_id", null: false
-    t.index ["bill_id"], name: "index_sales_on_bill_id"
     t.index ["client_id"], name: "index_sales_on_client_id"
     t.index ["price_list_id"], name: "index_sales_on_price_list_id"
   end
@@ -90,7 +88,6 @@ ActiveRecord::Schema.define(version: 2022_01_21_121117) do
   add_foreign_key "category_products", "products"
   add_foreign_key "sale_details", "products"
   add_foreign_key "sale_details", "sales"
-  add_foreign_key "sales", "bills"
   add_foreign_key "sales", "clients"
   add_foreign_key "sales", "price_lists"
 end
