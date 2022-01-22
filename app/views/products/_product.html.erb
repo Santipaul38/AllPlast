@@ -10,7 +10,7 @@
       <div class="btn-group place-content-end">
         <%= link_to "Ver", product, class: "btn" %>
         <%= link_to 'Editar', edit_product_path(product), class: "btn" %>
-        <%= link_to '× Eliminar producto ×', product, method: :delete, class: "btn hover:bg-red-500" %>
+        <%= button_to '× Eliminar producto ×', product, method: :delete, class: "btn hover:bg-red-500  rounded-l-none" %>
       </div> 
       <td>
     </tr>
