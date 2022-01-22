@@ -45,7 +45,7 @@ en:
       client:
         name: "Nombre"
         surname: "Apellido"
-        bussines: "Empresa"
+        business: "Negocio"
         phone_number: "Número de Teléfono"
         email: "E-mail"
       price_list:
