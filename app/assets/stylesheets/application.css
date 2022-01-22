@@ -32,7 +32,15 @@ td{
     border-bottom: 1px solid lightgray;
     
 }
-
+.contenedor-div{
+    position:relative;
+}
+.mi-imagen-abajo-derecha{
+   position:absolute;
+   bottom:-900px;
+   right:1760px;
+   background-color: white;
+}
 /*NAVBAR (De application layout)*/
 
 
