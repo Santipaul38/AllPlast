@@ -1,53 +1,64 @@
-<div>
-    <div class="navbar bg-gray-700 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
-        <div class="navbar-start">
-                <%= image_tag("ImagenNombre.png", style: 'height:40%;width:20%;') %>   
-        </div> 
-        <ul class="lg:flex justify-items-center md:space-x-8 w-full">
-
-            <% if controller_name == 'products' %>
-            <%= link_to 'Productos', products_path, class: "block py-2 pr-4 pl-3 font-bold text-white border-b border-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-50 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
-            <% else %>
-            <%= link_to 'Productos', products_path, class: "block py-2 pr-4 pl-3 text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white"%> 
-            <% end %>
-
-            <% if controller_name == 'categories' %>
-            <%= link_to 'Categorias', categories_path, class: "block py-2 pr-4 pl-3 font-bold text-white border-b border-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-50 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
-            <% else %>
-            <%= link_to 'Categorias', categories_path, class: "block py-2 pr-4 pl-3 text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white"%> 
-            <% end %>
-
-            <% if controller_name == 'clients' %>
-            <%= link_to 'Clientes', clients_path, class: "block py-2 pr-4 pl-3 font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-50 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
-            <% else %>
-            <%= link_to 'Clientes', clients_path, class: "block py-2 pr-4 pl-3 text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white"%> 
-            <% end %>
-
-            <% if controller_name == 'sales' %>
-            <%= link_to 'Ventas', sales_path, class: "block py-2 pr-4 pl-3 font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-50 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
-                % else %>
-            <%= link_to 'Ventas', sales_path, class: "block py-2 pr-4 pl-3 text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white"%> 
-            <% end %>
-
-            <% if controller_name == 'bills' %>
-            <%= link_to 'Facturas', bills_path, class: "block py-2 pr-4 pl-3 font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-50 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
-            <% else %>
-            <%= link_to 'Facturas', bills_path, class: "block py-2 pr-4 pl-3 text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white"%> 
-            <% end %>
-
-            <% if controller_name == 'price_lists' %>
-            <%= link_to 'Listas de precios', price_lists_path, class: "block py-2 pr-4 pl-3 font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-50 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
-            <% else %>
-            <%= link_to 'Listas de precios', price_lists_path, class: "block py-2 pr-4 pl-3 text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white"%> 
-            <% end %>
-            
-            <% if controller_name == 'sale_details' %>
-            <%= link_to 'Detalles de ventas', sale_details_path, class: "block py-2 pr-4 pl-3 font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-50 md:dark:hover:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
-            <% else %>
-            <%= link_to 'Detalles de ventas', sale_details_path, class: "block py-2 pr-4 pl-3 text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white"%> 
-            <% end %>
-                
-        </ul>
-    
+<div class="navbar bg-gray-700 border-gray-200 px-4 py-2.5 dark:bg-gray-900 h-20">
+    <div class="navbar-start">  
+        <%= link_to image_tag("ImagenNombre.png", class: 'newHome'), pages_home_url %>   
     </div>
+    <div class="navbar-center space-x-6">
+        <div>
+            <% if controller_name == 'products' %>
+            <%= link_to 'Productos', products_path, class: "navtext font-bold text-white border-b border-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-50 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
+            <% else %>
+            <%= link_to 'Productos', products_path, class: "navtext text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400"%> 
+            <% end %>
+        </div>
+
+        <div>
+            <% if controller_name == 'categories' %>
+            <%= link_to 'Categorias', categories_path, class: "navtext font-bold text-white border-b border-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-50 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
+            <% else %>
+            <%= link_to 'Categorias', categories_path, class: "navtext text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400"%> 
+            <% end %>
+        </div>
+
+        <div>
+            <% if controller_name == 'clients' %>
+            <%= link_to 'Clientes', clients_path, class: "navtext font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-50 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
+            <% else %>
+            <%= link_to 'Clientes', clients_path, class: "navtext text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400"%> 
+            <% end %>
+        </div>
+
+        <div>
+            <% if controller_name == 'sales' %>
+            <%= link_to 'Ventas', sales_path, class: "navtext font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-50 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
+            <% else %>
+            <%= link_to 'Ventas', sales_path, class: "navtext text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400"%> 
+            <% end %>
+        </div>
+
+        <div>
+            <% if controller_name == 'bills' %>
+            <%= link_to 'Facturas', bills_path, class: "navtext font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-50 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
+            <% else %>
+            <%= link_to 'Facturas', bills_path, class: "navtext text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400"%> 
+            <% end %>
+        </div>
+
+        <div>
+            <% if controller_name == 'price_lists' %>
+            <%= link_to 'Listas de precios', price_lists_path, class: "navtext font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-50 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
+            <% else %>
+            <%= link_to 'Listas de precios', price_lists_path, class: "navtext text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400"%> 
+            <% end %>
+        </div>
+
+        <div>   
+            <% if controller_name == 'sale_details' %>
+            <%= link_to 'Detalles de ventas', sale_details_path, class: "navtext font-bold text-white text-gwhiteborder-b border-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-50 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"%>
+            <% else %>
+            <%= link_to 'Detalles de ventas', sale_details_path, class: "navtext text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400"%> 
+            <% end %>
+        </div>
+    </div>
+    <div class="navbar-end">
+    </div>  
 </div>
