@@ -17,6 +17,7 @@
 
 /*TABLAS DE INDEX*/
 
+
 table{
     width: 100%;
     text-align: left;
@@ -40,6 +41,20 @@ td{
    bottom:-900px;
    right:1760px;
    background-color: white;
+}
+
+.newHome {
+    width: 20%;
+    height: 40%;
+}
+
+.newHome:hover {
+    width: 25%;
+    height: 45%;
+}
+
+.navtext:hover {
+    font-size: larger;
 }
 /*NAVBAR (De application layout)*/
 
