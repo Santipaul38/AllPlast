@@ -21,9 +21,11 @@
 table{
     width: 100%;
     text-align: left;
+    
 }
 
 td{
+    
     padding-top: 6px;
     padding-bottom: 6px;
 }
@@ -32,9 +34,16 @@ td{
 .render-rows{
     border-bottom: 1px solid lightgray;
     
+    
 }
 .contenedor-div{
+
     position:relative;
+}
+
+.contenedor2-div{
+
+    font-size: 20px;
 }
 .mi-imagen-abajo-derecha{
    position:absolute;

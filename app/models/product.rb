@@ -9,16 +9,18 @@ class Product < ApplicationRecord
                         :price,
                         :stock,
                         :category_ids,
-                        message: 'Ingresar el dato correspondiente'
+                        message: 'Ingresar el dato correspondiente.'
   validates :name,
             format: {
               with: /\A[a-z0-9\s]+\Z/i,
-              message: 'Por favor, solamente use letras',
+              message: 'debe contener letras y/o números.',
             }
   validates :price,
             numericality: {
               only_float: true,
               greater_than: 0,
-              message: 'El precio debe ser un número',
+              message: 'debe ser un número.',
             }
+
+  
 end

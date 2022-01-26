@@ -72,14 +72,24 @@ class SalesController < ApplicationController
 
   # DELETE /sales/1 or /sales/1.json
   def destroy
-    @sale.destroy
-
-    respond_to do |format|
-      format.html do
-        redirect_to sales_url,
-                    notice: 'La venta fue satisfactoriamente destruida.'
+    count = 0
+    for i in Bill.all
+      if i.sale_id == @sale.id
+        count = count + 1
       end
-      format.json { head :no_content }
+    end
+
+    if count == 0
+      @sale.destroy
+      respond_to do |format|
+        format.html { redirect_to rates_url, notice: "La venta se eliminó correctamente." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to rates_url, notice: "La venta no pudo eliminarse porque tiene asociado una facturación." }
+        format.json { head :no_content }
+      end
     end
   end
 
