@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_121117) do
+ActiveRecord::Schema.define(version: 2022_01_26_185223) do
 
   create_table "bills", force: :cascade do |t|
     t.float "total"
@@ -83,6 +83,13 @@ ActiveRecord::Schema.define(version: 2022_01_21_121117) do
     t.integer "price_list_id", null: false
     t.index ["client_id"], name: "index_sales_on_client_id"
     t.index ["price_list_id"], name: "index_sales_on_price_list_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "bills", "sales"

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get 'pages/home'
+  resources :users, only: [:new, :create]
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  root to: "pages#home"
+  get 'authorized', to: 'sessions#page_requires_login'
   resources :bills
   resources :price_lists
   resources :clients
@@ -12,5 +16,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-   root to: "pages#home"
+   
 end

@@ -1,6 +1,8 @@
 <div class="flex w-full justify-center">
-    <div class="fles flex-col">
-        <h1 class="font-bold text-4xl">¡¡¡Bienvenido!!!</h1>
-        <h1 class="pt-20 flex justify-center"> Acá van a estar los graficos </h1>
-    </div>
+    <h1>Welcome</h1>
+    <% if logged_in? %>
+        <h1>You are Logged In, <%= current_user.username %></h1>
+    <%end%>
+    <%= button_to "Login", '/login', method: :get%>
+    <%= button_to "Sign Up", '/users/new', method: :get%>
 </div>
