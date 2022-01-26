@@ -6,11 +6,24 @@
       <td>$<%= product.price %></td>
       <td><%= product.stock %></td>
       <td><%= product.registration_date.strftime("%d/%m/%Y %H:%M") %></td>
+
+
+      <td>
+      <div class="flex justify-between mb-1">
+        <span class="text-base font-medium text-blue-700 dark:text-white">Cantidad de Stock</span>
+        <%# <span class="text-sm font-medium text-blue-700 dark:text-white">100%</span> %>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
+      </div>
+      <td>
+
+
       <td>
       <div class="btn-group place-content-end">
         <%= link_to "Ver", product, class: "btn" %>
         <%= link_to 'Editar', edit_product_path(product), class: "btn" %>
-        <%= link_to '× Eliminar producto ×', product, method: :delete, class: "btn hover:bg-red-500" %>
+        <%= button_to '× Eliminar producto ×', product, method: :delete, class: "btn hover:bg-red-500  rounded-l-none" %>
       </div> 
       <td>
     </tr>
@@ -20,6 +33,7 @@
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Categoria/s:</strong>
+      
     </p>
 
     <p class="my-5">

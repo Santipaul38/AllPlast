@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @products = Product.where(:state => 0)
   end
 
   # GET /products/1 or /products/1.json
@@ -61,8 +61,12 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1 or /products/1.json
   def destroy
-    CategoryProduct.where(product_id: @product.id).destroy_all
-    @product.destroy
+    if SaleDetail.where(:product_id => @product.id).count == 0
+      CategoryProduct.where(product_id: @product.id).destroy_all
+      @product.destroy
+    else
+      @product.update(:state => 2)
+    end
 
     respond_to do |format|
       format.html do
