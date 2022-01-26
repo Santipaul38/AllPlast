@@ -3,7 +3,6 @@
     "@rails/request.js": "^0.0.6",
     "daisyui": "^1.24.2",
     "jquery": "^3.6.0",
-    "select2": "^4.1.0-rc.0"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "^2.0.0",

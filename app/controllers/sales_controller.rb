@@ -16,7 +16,7 @@ class SalesController < ApplicationController
 
   # GET /sales/1/edit
   def edit 
-    if params[:product_id]
+    if params[:product_id] and params[:remove] != "1"
       priceListPercentage = (PriceList.where(:id => @sale.price_list_id).first.percentage / 100)
       productPrice = Product.where(:id => params[:product_id]).first.price
       totalPrice = productPrice + (productPrice * priceListPercentage)
@@ -24,8 +24,11 @@ class SalesController < ApplicationController
       saleDetail.product_id = params[:product_id]
       saleDetail.sale_id = params[:id]
       saleDetail.unit = params[:quantity]
-      saleDetail.import = (params[:quantity] * totalPrice)
+      saleDetail.import = (params[:quantity] * totalPrice).to_f
       saleDetail.save
+    elsif params[:remove] == "1"
+      saleDetail = SaleDetail.where(product_id: params[:product_id], sale_id: params[:id]).first
+      saleDetail.destroy
     end
   end
 
