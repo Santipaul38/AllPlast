@@ -1,8 +1,84 @@
 <div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editando venta</h1>
 
-  <%= render "form", sale: @sale %>
+  <div class="flex flex-row">
+    <h1 class="font-bold text-4xl">Editando venta</h1>
 
-  <%= link_to "Ver venta", @sale, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "❮ Volver", sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <label for="my-modal-2" class="btn btn-primary modal-button">Añadir Producto</label> 
+    <input type="checkbox" id="my-modal-2" class="modal-toggle"> 
+    <div class="modal">
+      <div class="modal-box">
+        <h2 class="pb-2">Productos:</h2>
+
+        <form action="" method="edit">
+          <select id="form-control-lg" name="product_id" placeholder="Elija el producto..." autocomplete="off" class="mb-4 form-control-lg">
+            <%= options_from_collection_for_select(Product.all, 'id', 'name') %>
+          </select>
+
+          <input type="number" name="quantity" placeholder="Cantidad" class="w-full"></input>
+
+          <button class="btn btn-primary" type="submit" value="Save">Agregar</button>
+        </form>
+        
+        <div class="modal-action"> 
+          <label for="my-modal-2" class="btn">Cerrar</label>
+        </div>
+      </div>
+    </div> 
+  </div>
+
+  <div class=" flex flex-row">
+    <p class="my-5 flex flex-row">
+      <strong class="block font-medium mb-1 mr-1">Cliente:</strong>
+      <%= @sale.client.name %> <%= @sale.client.surname %>
+    </p>
+
+    <p class="my-5 ml-5 flex flex-row">
+      <strong class="block font-medium mb-1 mr-1">Lista de precios:</strong>
+      <%= @sale.price_list.name %>
+    </p>
+  </div>
+
+  <%if @sale.products.count > 0 %>
+    <table>
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Fecha de registro</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <% for product in @sale.products %>
+              <td><%= product.name %></td>
+              <td>$<%= product.price %></td>
+              <td><%= product.stock %></td>
+              <td><%= product.registration_date.strftime("%d/%m/%Y %H:%M") %></td>
+          <%end%>
+        </tr>
+      </tbody>
+    </table>
+  <%end%>
+
+  <% link_to "Ver venta", @sale, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <% link_to "❮ Volver", sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
 </div>
+
+<script>
+  var settings = {
+    plugins: {
+      'clear_button':{
+        'title':'Eliminar todas las opciones seleccionadas',
+      },
+    },
+    persist: false,
+    create: false,
+    onDelete: function(values) {
+      return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+    }
+  };
+  new TomSelect('#form-control-lg',settings);
+</script>

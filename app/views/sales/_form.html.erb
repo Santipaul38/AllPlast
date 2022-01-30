@@ -17,26 +17,13 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :monto %>
-    <%= form.collection_select(:bill_id, Bill.all, :id, :total, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full") %>
-  </div>
-
-  <div class="my-5">
     <%= form.label :lista_de_precios %>
-    <%= form.collection_select(:price_list_id, PriceList.all, :id, :percentage, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full") %>
+    <%= form.collection_select(:price_list_id, PriceList.all, :id, :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full") %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :numero_de_factura %>
-    <%= form.number_field :number_bill, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :fecha %>
-    <%= form.datetime_field :date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
+  <div class="inline ">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
+
 <% end %>
+

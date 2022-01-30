@@ -9,6 +9,11 @@
   dependencies:
     prettier ">=2.3.0"
 
+"@rails/request.js@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@rails/request.js/-/request.js-0.0.6.tgz#5f0347a9f363e50ec45118c7134080490cda81d8"
+  integrity sha512-dfFWaQXitYJ4kxrgGJNhDNXX54/v10YgoJqBMVe6lhqs6a4N9WD7goZJEvwin82TtK8MqUNhwfyisgKwM6dMdg==
+
 daisyui@^1.24.2:
   version "1.24.3"
   resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-1.24.3.tgz#b91cc3415d59ad529a0d3eabfec1d9797a601a92"

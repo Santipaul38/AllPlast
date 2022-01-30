@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  before_action :set_sale, only: %i[ show edit update destroy ]
+  before_action :set_sale, only: %i[show edit update destroy]
 
   # GET /sales or /sales.json
   def index
@@ -7,8 +7,7 @@ class SalesController < ApplicationController
   end
 
   # GET /sales/1 or /sales/1.json
-  def show
-  end
+  def show; end
 
   # GET /sales/new
   def new
@@ -16,17 +15,34 @@ class SalesController < ApplicationController
   end
 
   # GET /sales/1/edit
-  def edit
+  def edit 
+    if params[:product_id]
+      priceListPercentage = (PriceList.where(:id => @sale.price_list_id).first.percentage / 100)
+      productPrice = Product.where(:id => params[:product_id]).first.price
+      totalPrice = productPrice + (productPrice * priceListPercentage)
+      saleDetail = SaleDetail.new
+      saleDetail.product_id = params[:product_id]
+      saleDetail.sale_id = params[:id]
+      saleDetail.unit = params[:quantity]
+      saleDetail.import = (params[:quantity] * totalPrice)
+      saleDetail.save
+    end
   end
 
   # POST /sales or /sales.json
   def create
+    puts("WEPAAAAAAAA")
+    puts(params[:products_ids])
     @sale = Sale.new(sale_params)
+    @sale.date = DateTime.now - 3.hours
 
+    
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to sale_url(@sale), notice: "La venta fue satisfactoriamente creada." }
-        format.json { render :show, status: :created, location: @sale }
+        format.html do
+          redirect_to edit_sale_url(@sale)
+        end
+        format.json { render :edit, location: @sale }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @sale.errors, status: :unprocessable_entity }
@@ -37,8 +53,12 @@ class SalesController < ApplicationController
   # PATCH/PUT /sales/1 or /sales/1.json
   def update
     respond_to do |format|
+      @sale.date = DateTime.now - 3.hours
       if @sale.update(sale_params)
-        format.html { redirect_to sale_url(@sale), notice: "La venta fue satisfactoriamente actualizada." }
+        format.html do
+          redirect_to sale_url(@sale),
+                      notice: 'La venta fue satisfactoriamente actualizada.'
+        end
         format.json { render :show, status: :ok, location: @sale }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,22 +69,36 @@ class SalesController < ApplicationController
 
   # DELETE /sales/1 or /sales/1.json
   def destroy
-    @sale.destroy
+    count = 0
+    for i in Bill.all
+      if i.sale_id == @sale.id
+        count = count + 1
+      end
+    end
 
-    respond_to do |format|
-      format.html { redirect_to sales_url, notice: "La venta fue satisfactoriamente destruida." }
-      format.json { head :no_content }
+    if count == 0
+      @sale.destroy
+      respond_to do |format|
+        format.html { redirect_to rates_url, notice: "La venta se eliminó correctamente." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to rates_url, notice: "La venta no pudo eliminarse porque tiene asociado una facturación." }
+        format.json { head :no_content }
+      end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sale
-      @sale = Sale.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def sale_params
-      params.require(:sale).permit(:number_bill, :date, :client_id, :bill_id, :price_list_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sale
+    @sale = Sale.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def sale_params
+    params.require(:sale).permit(:date, :client_id, :price_list_id, products_ids: [])
+  end
 end

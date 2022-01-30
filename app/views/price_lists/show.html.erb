@@ -1,5 +1,5 @@
 <div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
+  <div class="mx-auto contenedor2-div">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
@@ -7,9 +7,6 @@
     <%= render @price_list %>
 
     <%= link_to 'Editar', edit_price_list_path(@price_list), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to '× Eliminar lista de precios ×', price_list_path(@price_list), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-500 font-medium" %>
-    </div>
     <%= link_to '❮ Volver', price_lists_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

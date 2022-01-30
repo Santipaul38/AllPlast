@@ -1,16 +1,8 @@
 <div id="<%= dom_id price_list %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Date:</strong>
-    <%= price_list.date %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Percentage:</strong>
-    <%= price_list.percentage %>
-  </p>
 
   <% if action_name != "show" %>
     <tr class = "render-rows">
+      <td><%= price_list.name %></td>
       <td><%= price_list.date %></td>
       <td>%<%= price_list.percentage %></td>
 
@@ -19,6 +11,11 @@
     </tr>
 
   <% else %>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Nombre:</strong>
+      <%= price_list.name %>
+    </p>
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Fecha:</strong>

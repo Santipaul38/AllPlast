@@ -1,15 +1,22 @@
 <div id="<%= dom_id client %>">
 
   <% if action_name != "show" %>
-  <tr class = "render-rows">
-      <td><%= client.name %></td>
-      <td><%= client.surname %></td>
-      <td><%= client.business %></td>
-      <td><%= client.phone_number %></td>
-      <td><%= client.email %></td>
 
-      <td><%= link_to "Ver", client, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
-      <td><%= link_to 'Editar', edit_client_path(client), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
+    <tr class = "render-rows">
+        <td><%= client.name %></td>
+        <td><%= client.surname %></td>
+        <td><%= client.business %></td>
+        <td><%= client.phone_number %></td>
+        <td><%= client.email %></td>
+
+        <td>
+        <div class="btn-group place-content-end">
+          <%= link_to "Ver", client, class: "btn" %>
+          <%= link_to 'Editar', edit_client_path(client), class: "btn" %>
+          <%= button_to '× Eliminar cliente ×', client, method: :delete, class: "btn hover:bg-red-500  rounded-l-none" %>
+        </div> 
+        <td>
+    </tr>
 
   <% else %>
 

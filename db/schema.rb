@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_18_123113) do
+ActiveRecord::Schema.define(version: 2022_01_21_121117) do
 
   create_table "bills", force: :cascade do |t|
     t.float "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "sale_id", null: false
+    t.index ["sale_id"], name: "index_bills_on_sale_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -46,6 +48,8 @@ ActiveRecord::Schema.define(version: 2022_01_18_123113) do
   create_table "price_lists", force: :cascade do |t|
     t.datetime "date", precision: 6
     t.float "percentage"
+    t.string "name"
+    t.datetime "expiration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,6 +58,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_123113) do
     t.string "name"
     t.float "price"
     t.integer "stock"
+    t.integer "state"
     t.datetime "registration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -71,23 +76,20 @@ ActiveRecord::Schema.define(version: 2022_01_18_123113) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.integer "number_bill"
     t.datetime "date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "client_id", null: false
-    t.integer "bill_id", null: false
     t.integer "price_list_id", null: false
-    t.index ["bill_id"], name: "index_sales_on_bill_id"
     t.index ["client_id"], name: "index_sales_on_client_id"
     t.index ["price_list_id"], name: "index_sales_on_price_list_id"
   end
 
+  add_foreign_key "bills", "sales"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"
   add_foreign_key "sale_details", "products"
   add_foreign_key "sale_details", "sales"
-  add_foreign_key "sales", "bills"
   add_foreign_key "sales", "clients"
   add_foreign_key "sales", "price_lists"
 end

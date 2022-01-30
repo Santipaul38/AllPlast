@@ -17,24 +17,55 @@
 
 /*TABLAS DE INDEX*/
 
+
 table{
     width: 100%;
     text-align: left;
+    
 }
 
 td{
+    
     padding-top: 6px;
     padding-bottom: 6px;
 }
 
+
 .render-rows{
     border-bottom: 1px solid lightgray;
+    
+    
+}
+.contenedor-div{
+
+    position:relative;
 }
 
+.contenedor2-div{
+
+    font-size: 20px;
+}
+.mi-imagen-abajo-derecha{
+   position:absolute;
+   bottom:-900px;
+   right:1760px;
+   background-color: white;
+}
+
+.newHome {
+    width: 20%;
+    height: 40%;
+}
+
+.newHome:hover {
+    width: 25%;
+    height: 45%;
+}
+
+.navtext:hover {
+    font-size: larger;
+}
 /*NAVBAR (De application layout)*/
-
-
-
 
 
 

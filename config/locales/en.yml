@@ -31,3 +31,29 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      product:
+        name: "Nombre"
+        price: "Precio"
+        stock: "Cantidad"
+        registration_date: "Fecha de Registro"
+      bill:
+        total: "Total"
+      category:
+        name: "Nombre"
+      client:
+        name: "Nombre"
+        surname: "Apellido"
+        business: "Negocio"
+        phone_number: "Número de Teléfono"
+        email: "E-mail"
+      price_list:
+        date: "Fecha de Registro"
+        percentage: "Porcentaje de carga"
+        expiration_date: "Fecha de Vencimiento"
+      sale_detail:
+        unit: "Unidades"
+        import: "Importe"
+      sale:
+        date: "Fecha de Registro"
