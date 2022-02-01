@@ -79,12 +79,12 @@ class SalesController < ApplicationController
     if count == 0
       @sale.destroy
       respond_to do |format|
-        format.html { redirect_to rates_url, notice: "La venta se eliminó correctamente." }
+        format.html { redirect_to bills_url, notice: "La venta se eliminó correctamente." }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to rates_url, notice: "La venta no pudo eliminarse porque tiene asociado una facturación." }
+        format.html { redirect_to bills_url, notice: "La venta no pudo eliminarse porque tiene asociado una facturación." }
         format.json { head :no_content }
       end
     end

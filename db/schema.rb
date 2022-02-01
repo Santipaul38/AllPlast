@@ -48,20 +48,20 @@ ActiveRecord::Schema.define(version: 2022_01_26_220947) do
   create_table "price_lists", force: :cascade do |t|
     t.datetime "date", precision: 6
     t.float "percentage"
+    t.string "name"
+    t.datetime "expiration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "expiration_date", precision: 6
-    t.string "name"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.integer "stock"
+    t.integer "state"
     t.datetime "registration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "state"
   end
 
   create_table "sale_details", force: :cascade do |t|

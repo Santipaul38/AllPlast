@@ -1,7 +1,8 @@
 <div class="navbar bg-gray-700 border-gray-200 px-4 py-2.5 dark:bg-gray-900 h-20">
     <div class="navbar-start">  
-        <%= link_to image_tag("ImagenNombre.png", class: 'newHome'), pages_home_url %>   
+        <%= link_to image_tag("ImagenNombre.png", class: 'newHome'), sales_path %>   
     </div>
+    
     <div class="navbar-center space-x-6">
         <div>
             <% if controller_name == 'products' %>
@@ -58,7 +59,16 @@
             <%= link_to 'Detalles de ventas', sale_details_path, class: "navtext text-gray-200 hover:text-white hover:bg-transparent md:hover:bg-transparent md:p-0 dark:text-gray-400"%> 
             <% end %>
         </div>
+        
     </div>
     <div class="navbar-end">
+        <% if logged_in? %>
+            <style>
+                #heading { color: #f8fafc; }
+            </style>
+            <h1 id="heading">Sesión iniciada como <%= current_user.username%></h1>
+            <%= button_to "Log Out", '/sessions/close', method: :get, class: "btn hover:bg-red-500  rounded-l-none ml-2" %>
+        <%end%>
+        
     </div>  
 </div>

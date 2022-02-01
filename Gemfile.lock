@@ -70,7 +70,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.10.1)
+    bootsnap (1.10.2)
       msgpack (~> 1.2)
     builder (3.2.4)
     capybara (3.36.0)
@@ -92,7 +92,7 @@ GEM
     erubi (1.10.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    i18n (1.8.11)
+    i18n (1.9.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.0.2)
       actionpack (>= 6.0.0)
@@ -113,9 +113,8 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.7.1)
     minitest (5.15.0)
-    msgpack (1.4.2)
+    msgpack (1.4.4)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -132,11 +131,10 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.1)
-      mini_portile2 (~> 2.7.0)
+    nokogiri (1.13.1-x64-mingw-ucrt)
       racc (~> 1.4)
     public_suffix (4.0.6)
-    puma (5.5.2)
+    puma (5.6.1)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
@@ -192,8 +190,6 @@ GEM
     strscan (3.0.1)
     tailwindcss-rails (2.0.5)
       railties (>= 6.0.0)
-    tailwindcss-rails (2.0.5-x64-mingw32)
-      railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.2.0)
     turbo-rails (1.0.1)
@@ -217,11 +213,10 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.3)
+    zeitwerk (2.5.4)
 
 PLATFORMS
   x64-mingw-ucrt
-  x64-mingw32
 
 DEPENDENCIES
   bcrypt (~> 3.1, >= 3.1.16)
@@ -247,4 +242,4 @@ RUBY VERSION
    ruby 3.1.0p0
 
 BUNDLED WITH
-   2.3.4
+   2.3.6

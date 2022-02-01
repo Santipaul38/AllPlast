@@ -9,9 +9,12 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect_to '/pages/home'
+        redirect_to sales_path
     else
-        redirect_to '/login'
+      respond_to do |format|
+        format.html { redirect_to login_url(:notice => "Usuario y/ó contraseña incorrecta.")}
+        format.json { head :no_content }
+      end 
     end
   end
 
