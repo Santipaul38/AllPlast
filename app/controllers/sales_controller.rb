@@ -15,8 +15,10 @@ class SalesController < ApplicationController
   end
 
   # GET /sales/1/edit
-  def edit 
-    if params[:product_id]
+  # GET /sales/1/edit?product_id
+  def edit
+
+    if params[:product_id] and params[:quantity]
       priceListPercentage = (PriceList.where(:id => @sale.price_list_id).first.percentage / 100)
       productPrice = Product.where(:id => params[:product_id]).first.price
       totalPrice = productPrice + (productPrice * priceListPercentage)
@@ -24,8 +26,9 @@ class SalesController < ApplicationController
       saleDetail.product_id = params[:product_id]
       saleDetail.sale_id = params[:id]
       saleDetail.unit = params[:quantity]
-      saleDetail.import = (params[:quantity] * totalPrice)
+      saleDetail.import = (params[:quantity] * totalPrice).to_f
       saleDetail.save
+      redirect_to edit_sale_url(@sale)
     end
   end
 
@@ -89,6 +92,20 @@ class SalesController < ApplicationController
       end
     end
   end
+
+  # GET /sales/deleteDetails
+  def deleteDetail
+    @sale = Sale.find_by(id: params[:sale_id])
+    @detail = SaleDetail.find_by(id: params[:detail_id])
+    if @detail.destroy
+      redirect_to edit_sale_path(@sale)
+    end
+  end
+
+  def actualizarEdit
+    
+  end
+  
 
   private
 

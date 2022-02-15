@@ -33,9 +33,14 @@ td{
 
 .render-rows{
     border-bottom: 1px solid lightgray;
-    
-    
+      
 }
+
+.editSale{
+    border-bottom: 1.5px solid gray;
+      
+}
+
 .contenedor-div{
 
     position:relative;

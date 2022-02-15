@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   get 'users/new'
   get 'users/create'
   get 'pages/home'
+  get 'pages/stock'
 
   get 'authorized', to: 'sessions#page_requires_login'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
+
+  post 'sales/deleteDetail'
 
   resources :bills
   resources :price_lists

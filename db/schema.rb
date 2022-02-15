@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_26_220947) do
+ActiveRecord::Schema.define(version: 2022_01_29_140654) do
 
   create_table "bills", force: :cascade do |t|
     t.float "total"
@@ -58,10 +58,11 @@ ActiveRecord::Schema.define(version: 2022_01_26_220947) do
     t.string "name"
     t.float "price"
     t.integer "stock"
-    t.integer "state"
     t.datetime "registration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "state"
+    t.integer "max_stock"
   end
 
   create_table "sale_details", force: :cascade do |t|
