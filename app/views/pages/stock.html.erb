@@ -1,0 +1,61 @@
+<div class="flex w-full h-full justify-center">
+    <div class="fles flex-col">
+        <h1 class="font-bold text-4xl text-center">Manejo del stock</h1>
+
+        <div class="mt-6 h-full space-x-7">
+            <label for="my-modal" class="btn btn-primary modal-button">Consultar Producto</label> 
+            <input type="checkbox" id="my-modal" class="modal-toggle"> 
+            <div class="modal">
+                <div class="modal-box flex flex-col">
+                    <h2 class="pb-2">Productos:</h2>
+
+                    <form action="" method="">
+                        <select id="form-control-lg" name="product_id" placeholder="Elija el producto..." autocomplete="off" class="mb-4 form-control-lg">
+                            <%= options_from_collection_for_select(Product.all, 'id', 'name') %>
+                        </select>
+                    <div class="flex flex-row justify-end space-x-3">    
+                        <button class="btn btn-primary" type="submit" value="Save">Mostrar</button>
+                        <label for="my-modal" class="btn">Cerrar</label>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+            <label for="my-modal-2-stock" class="btn btn-primary modal-button">Cargar Stock</label> 
+            <input type="checkbox" id="my-modal-2-stock" class="modal-toggle"> 
+            <div class="modal">
+                <div class="modal-box flex flex-col">
+                    <h2 class="pb-2">Productos:</h2>
+
+                    <form action="" method="">
+                        <select id="form-modal-2" name="product_id" placeholder="Elija el producto..." autocomplete="off" class="mb-4 form-modal-2">
+                            <%= options_from_collection_for_select(Product.all, 'id', 'name') %>
+                        </select>
+                        <input type="number" name="quantity" placeholder="Cantidad" class="w-full"></input>
+                    <div class="flex flex-row justify-end space-x-3 mt-3">    
+                        <button class="btn btn-primary" type="submit" value="Save">Cargar</button>
+                        <label for="my-modal-2-stock" class="btn">Cerrar</label>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  var settings = {
+    plugins: {
+      'clear_button':{
+        'title':'Eliminar todas las opciones seleccionadas',
+      },
+    },
+    persist: false,
+    create: false,
+    onDelete: function(values) {
+      return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+    }
+  };
+  new TomSelect('#form-control-lg',settings);
+  new TomSelect('#form-modal-2',settings);
+</script>
