@@ -1,7 +1,7 @@
 <div class="mx-auto md:w-2/3 bg-transparent w-full divide-y-2">
   <div class="flex flex-col editSale pb-8">
-    <h1 class="font-bold text-4xl">Editando venta</h1>
-    <div class=" flex flex-row">
+    <h1 class="font-bold text-4xl text-center">Editando Venta</h1>
+    <div class=" flex flex-row justify-center">
       <p class="my-5 flex flex-row text-xl">
         <strong class="block font-medium mb-1 mr-1">Cliente:</strong>
         <%= @sale.client.name %> <%= @sale.client.surname %>
@@ -13,31 +13,42 @@
       </p>
     </div>
     <div>
-      <strong class="block font-medium text-xl mb-1 mr-1">Agregar Productos:</strong>
-      <form action="" method="edit">
-        <select id="form-control-lg" name="product_id" placeholder="Elija el producto..." required autocomplete="off" class="mb-4 form-control-lg" onchange="redirect_to" >
-          <option value=""></option>
-          <%= options_from_collection_for_select(Product.all, 'id', 'name') %>
-        </select>
-
-        <input type="number" name="quantity" placeholder="Cantidad" class="w-full rounded-md" required></input>
-
-        <div class="flex flex-row pt-3">    
-          <button class="btn btn-primary w-full" type="submit" value="Save">Agregar</button>
+      <label for="my-modal" class="btn modal-button btn-primary w-full">Añadir Producto</label>
+      <input type="checkbox" id="my-modal" class="modal-toggle">
+      <div class="modal">
+        <div class="modal-box h-max pb-10">
+          <strong class="block font-medium text-xl mb-1 mr-1">Agregar Productos:</strong>
+          <%= render "prodForm", sale: @sale %>
+          <div class="modal-action">
+            <label for="my-modal" class="btn w-full">Cancelar</label>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
+
+    <%if params[:product_id] %>
+      <input type="checkbox" checked="checked" id="my-modal2" class="modal-toggle">
+      <div class="modal">
+        <div class="modal-box h-max pb-10">
+          <strong class="block font-medium text-xl mb-1 mr-1">Agregar Productos:</strong>
+          <%= render "quantityForm", sale: @sale %>
+          <div class="modal-action">
+            <label for="my-modal2" class="btn w-full">Cancelar</label>
+          </div>
+        </div>
+      </div>
+    <%end%>
   </div>
 
   <%if @sale.products.count > 0 %>
   <div class="mt-5 pb-8">
-    <h1 class="font-bold text-2xl">Productos añadidos en la venta</h1>
+    <h1 class="font-bold text-2xl mb-3">Productos añadidos en la venta</h1>
     <table>
       <thead>
         <tr>
           <th>Descripción</th>
           <th>Precio</th>
-          <th>Stock</th>
+          <th>Cantidad</th>
           <th>Fecha de registro</th>
           <th colspan="1"/>
         </tr>
@@ -49,7 +60,7 @@
           <tr class="render-rows">
             <td><%= product.name %></td>
             <td>$<%= product.price %></td>
-            <td><%= product.stock %></td>
+            <td><%= detail.unit %></td>
             <td><%= product.registration_date.strftime("%d/%m/%Y %H:%M") %></td>
             <td>
               <%= button_to raw('
@@ -86,3 +97,18 @@
   };
   new TomSelect('#form-control-lg',settings);
 </script>
+
+<!--
+<form action="" method="edit">
+            <select id="form-control-lg" name="product_id" placeholder="Elija el producto..." required autocomplete="off" class="mb-4">
+              <option value=""></option>
+              <%= options_from_collection_for_select(Product.all, 'id', 'name') %>
+            </select>
+
+            <input type="number" name="quantity" placeholder="Cantidad" class="w-full rounded-md" required></input>
+
+            <div class="flex flex-row pt-3">    
+              <button class="btn btn-primary w-full" type="submit" value="Save">Agregar</button>
+            </div>
+          </form>
+-->

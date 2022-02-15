@@ -3,35 +3,35 @@
   <% if action_name != "show" %>
 
     <tr class = "render-rows">
-      <td><%= sale.client.name %>" "<%= sale.client.surname %></td>
-      <td><%= sale.price_list.percentage %></td>
+      <td><%= sale.client.name %> <%= sale.client.surname %></td>
+      <td><%= sale.price_list.name %></td>
       <td><%= sale.id %></td>
-      <td><%= sale.date %></td>
+      <td><%= sale.date.strftime("%D - %H:%m hs.") %></td>
 
-      <td><%= link_to "Show this sale", sale, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></td>
-      <td><%= link_to 'Edit this sale', edit_sale_path(sale), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
+      <td class="justify-end flex"><%= link_to "Show this sale", sale, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+          <%= link_to 'Edit this sale', edit_sale_path(sale), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %></td>
     <tr>
 
   <% else %>
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Cliente:</strong>
-      <%= sale.client.name %>" "<%= sale.client.surname %>
+      <%= sale.client.name %> <%= sale.client.surname %>
     </p>
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Lista de precios:</strong>
-      <%= sale.price_list.percentage %>
+      <%= sale.price_list.name %>
     </p>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Número de factura:</strong>
+      <strong class="block font-medium mb-1">Número de comprobante:</strong>
       <%= sale.id %>
     </p>
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Fecha:</strong>
-      <%= sale.date %>
+      <%= sale.date.strftime("%D-%M-%Y") %>
     </p>
 
   <%end%>

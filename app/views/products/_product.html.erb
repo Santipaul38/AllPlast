@@ -1,6 +1,7 @@
 <div id="<%= dom_id product %>">
   <% if action_name != "show" %>
-
+    <% stock = ((product.stock.to_f / product.max_stock.to_f) * 100).to_i %>
+    <% @style = ("width: #{stock}") %>
     <tr class = "render-rows">
       <td><%= product.name %></td>
       <td>$<%= product.price %></td>
@@ -9,13 +10,22 @@
 
 
       <td>
-      <div class="flex justify-between mb-1">
-        <span class="text-base font-medium text-blue-700 dark:text-white">Cantidad de Stock</span>
-        <%# <span class="text-sm font-medium text-blue-700 dark:text-white">100%</span> %>
-      </div>
-      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-      </div>
+        <div class="flex mb-1 justify-center">
+          <% case stock %>
+          <% when 100%>
+            <progress class="progress progress-success w-56" value="100" max="100"></progress>
+          <% when 75..100 %>
+            <progress class="progress progress-success w-56" value="90" max="100"></progress>
+          <% when 50..75 %>
+            <progress class="progress progress-success w-56" value="60" max="100"></progress>
+          <% when 25..50 %>
+            <progress class="progress progress-warning w-56" value="40" max="100"></progress>
+          <% when 5..25%>
+            <progress class="progress progress-error w-56" value="10" max="100"></progress>
+          <% when 0%>
+            <progress class="progress w-56" value="0" max="100"></progress>
+          <%end%>
+        </div>
       <td>
 
 

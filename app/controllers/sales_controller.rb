@@ -12,6 +12,26 @@ class SalesController < ApplicationController
   # GET /sales/new
   def new
     @sale = Sale.new
+
+    @clients = []
+    @lists = []
+
+    for c in Client.all
+      name = c.name+" "+c.surname
+      id = c.id
+      opt = [name, id]
+
+      @clients.push(opt)
+    end
+
+    for l in PriceList.all
+      name = l.name
+      id = l.id
+      opt = [name, id]
+
+      @lists.push(opt)
+    end
+
   end
 
   # GET /sales/1/edit
@@ -28,13 +48,18 @@ class SalesController < ApplicationController
       saleDetail.unit = params[:quantity]
       saleDetail.import = (params[:quantity] * totalPrice).to_f
       saleDetail.save
+      
+      product = Product.find_by(:id => params[:product_id])
+      stock = product.stock - params[:quantity].to_i
+      product.update(stock: stock)
+
       redirect_to edit_sale_url(@sale)
     end
+    
   end
 
   # POST /sales or /sales.json
   def create
-    puts("WEPAAAAAAAA")
     puts(params[:products_ids])
     @sale = Sale.new(sale_params)
     @sale.date = DateTime.now - 3.hours
@@ -78,16 +103,23 @@ class SalesController < ApplicationController
         count = count + 1
       end
     end
+    for d in @sale.sale_details
+      product = Product.find_by(id: d.product_id)
+      stock = product.stock + d.unit
+      if d.destroy
+        product.update(stock: stock)
+      end
+    end
 
     if count == 0
       @sale.destroy
       respond_to do |format|
-        format.html { redirect_to bills_url, notice: "La venta se eliminó correctamente." }
+        format.html { redirect_to sales_url, notice: "La venta se eliminó correctamente." }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to bills_url, notice: "La venta no pudo eliminarse porque tiene asociado una facturación." }
+        format.html { redirect_to sales_url, notice: "La venta no pudo eliminarse porque tiene asociado una facturación." }
         format.json { head :no_content }
       end
     end
@@ -97,7 +129,10 @@ class SalesController < ApplicationController
   def deleteDetail
     @sale = Sale.find_by(id: params[:sale_id])
     @detail = SaleDetail.find_by(id: params[:detail_id])
+    @product = Product.find_by(id: @detail.product_id)
+    stock = @product.stock + @detail.unit
     if @detail.destroy
+      @product.update(stock: stock)
       redirect_to edit_sale_path(@sale)
     end
   end

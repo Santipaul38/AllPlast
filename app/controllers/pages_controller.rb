@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     @prod = Product.where(:id => params[:product_id]).first
     @stock = @prod.stock + params[:quantity].to_i
     @prod.update(:stock => @stock)
-    redirect_to pages_stock_url
+    redirect_to pages_stock_url(product_id: params[:product_id])
    end
   end
 end

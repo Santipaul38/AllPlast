@@ -23,6 +23,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.registration_date = DateTime.now - 3.hours
     @product.state = 0
+    @product.max_stock = @product.stock
 
     respond_to do |format|
       if @product.save

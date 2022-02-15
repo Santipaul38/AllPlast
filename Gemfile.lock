@@ -133,6 +133,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.1-x64-mingw-ucrt)
       racc (~> 1.4)
+    nokogiri (1.13.1-x64-mingw32)
+      racc (~> 1.4)
     public_suffix (4.0.6)
     puma (5.6.1)
       nio4r (~> 2.0)
@@ -190,6 +192,8 @@ GEM
     strscan (3.0.1)
     tailwindcss-rails (2.0.5)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.5-x64-mingw32)
+      railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.2.0)
     turbo-rails (1.0.1)
@@ -217,6 +221,7 @@ GEM
 
 PLATFORMS
   x64-mingw-ucrt
+  x64-mingw32
 
 DEPENDENCIES
   bcrypt (~> 3.1, >= 3.1.16)
@@ -239,7 +244,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.1.0p0
+   ruby 3.0.3p157
 
 BUNDLED WITH
    2.3.6

@@ -72,5 +72,9 @@ td{
 }
 /*NAVBAR (De application layout)*/
 
+.ts-wrapper .ts-control {
+    font-size: medium;
+}
+
 
 

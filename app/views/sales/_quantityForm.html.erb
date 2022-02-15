@@ -1,0 +1,11 @@
+<%product = Product.find_by(:id => params[:product_id])%>
+<%max = product.stock - 10%>
+<form action="" method="edit" class="flex flex-col">
+    <input class="w-full rounded-md mb-3" type="text" value="<%= product.name%>" disabled></input>
+    <input type="text" name="product_id" class="w-full rounded-md" style="display: none" value="<%=product.id%>"></input>
+    <input type="number" name="quantity" min="1" max="<%= max %>" placeholder="Cantidad" class="w-full rounded-md" required></input>
+
+    <div class="flex flex-row pt-3">    
+        <button class="btn btn-primary w-full" type="submit">Añadir</button>
+    </div>
+</form>

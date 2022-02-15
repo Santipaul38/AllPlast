@@ -1,0 +1,10 @@
+<form action="" method="edit">
+    <select id="form-control-lg" name="product_id" placeholder="Elija el producto..." required autocomplete="off" class="mb-4">
+        <option value=""></option>
+        <%= options_from_collection_for_select(Product.where(:state => 0), 'id', 'name') %>
+    </select>
+
+    <div class="flex flex-row pt-3">    
+        <button class="btn btn-primary w-full" type="submit">Seleccionar</button>
+    </div>
+</form>
