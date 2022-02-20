@@ -58,10 +58,10 @@ ActiveRecord::Schema.define(version: 2022_01_29_140654) do
     t.string "name"
     t.float "price"
     t.integer "stock"
+    t.integer "state"
     t.datetime "registration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "state"
     t.integer "max_stock"
   end
 

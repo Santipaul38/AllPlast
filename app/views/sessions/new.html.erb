@@ -11,18 +11,49 @@
       </div>
     </div>
   <%end%>
-  <h1 class="font-bold text-4xl text-center">Inicio de sesión</h1>
-  
-  <div class="ml-5 flex justify-center w-full">
-    <%= form_tag '/login' do %>
-    <%= label_tag :Usuario%>
-    <%= text_field_tag :username %>
-    <%= label_tag :Contraseña%>
-    <%= password_field_tag :password%>
-    <%= submit_tag "Ingresar", class: "btn hover:bg-green-500 rounded" %>
-    
-    
-  <%end%>
-  <%= button_to "Registrarse", new_user_path, method: :get, class: "btn ml-2 hover:bg-green-500 rounded" %>
+
+  <div>
+    <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
+    <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Iniciar sesión</h1>
   </div>
+
+  <br>
+  
+  <div class="flex justify-center w-full">
+
+    <%= form_tag '/login', :class => 'w-7/12' do %>
+    
+      <div>
+        <label for="name" class="sr-only">Nombre</label>
+        <input id="name" name="username" type="text" autocomplete="name" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nombre">
+      </div>
+      <div>
+        <label for="password" class="sr-only">Contraseña</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña">
+      </div> 
+
+    <br>
+
+    <div>
+      <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+          <!-- Heroicon name: solid/lock-closed -->
+          <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        Ingresar
+      </button>
+    </div>
+
+    <%end%>
+
+  </div>
+
+  <br>
+
+  <div class="flex justify-center w-full">
+    <%= link_to "Registrarse", new_user_path, method: :get, class: "group relative w-7/12 justify-center text-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+  </div>
+
 </div>
