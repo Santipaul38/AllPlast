@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
 
   post 'sales/deleteDetail'
+  post 'products/deleteCategory'
 
   resources :bills
   resources :price_lists

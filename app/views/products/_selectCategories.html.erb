@@ -1,12 +1,75 @@
-<form action="" method="edit">
-    <select id="form-control-lg" name="category_ids" placeholder="Elija categoría..." required autocomplete="off" class="mb-4">
-        <option value=""></option>
-        <% for c in @categories %>
-            <option value="<%=c[1]%>"><%=c[0]%></option>
-        <%end%>
-    </select>
+<%if @product.categories.count > 0 %>
+    <div class="mt-10 py-8 border-t border-black">
+        <h1 class="font-bold text-2xl mb-3">Categorías a las que pretenece el producto</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th colspan="1"/>
+            </tr>
+            </thead>
 
-    <div class="flex flex-row pt-3">    
-        <button class="btn btn-primary w-full" type="submit">Seleccionar</button>
+            <tbody>
+            <% for category in @product.categories %>
+                <tr class="render-rows">
+                <td><%= category.name %></td>
+                <td class="w-full justify-end flex">
+                    <%= button_to raw('
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    '), 
+                    products_deleteCategory_path(:product_id => @product.id, :category_id => category.id), class: "btn btn-ghost" %>
+                </td>
+                </tr>
+            <%end%>
+            </tbody>
+        </table>
     </div>
-</form>
+<%end%>
+
+<div class="border-b border-black mb-8 pb-10">
+    <label for="my-modal" class="btn modal-button btn-primary w-full">Añadir Categoria</label>
+    <input type="checkbox" id="my-modal" class="modal-toggle">
+    <div class="modal">
+    <div class="modal-box h-max pb-10">
+        <strong class="block font-medium text-xl mb-1 mr-1">Agregar Categoria:</strong>
+        <form action="" method="edit">
+            <select id="categoryselect" name="category_id" placeholder="Elija categoría..." required autocomplete="off" class="mb-4">
+                <option value=""></option>
+                <% for c in @categories %>
+                    <option value="<%=c[1]%>"><%=c[0]%></option>
+                <%end%>
+            </select>
+
+            <div class="flex flex-row pt-3">    
+                <button class="btn btn-primary w-full" type="submit">Seleccionar</button>
+            </div>
+        </form>
+        <div class="modal-action">
+        <label for="my-modal" class="btn w-full">Cancelar</label>
+        </div>
+    </div>
+    </div>
+</div>
+
+  <%= link_to "Ver producto", @product, class: "btn rounded-lg py-4 px-5 bg-gray-100 inline-block font-medium text-black hover:text-white" %>
+  <%= link_to "❮ Volver", products_path, class: "btn rounded-lg py-4 px-5 bg-gray-100 inline-block font-medium text-black hover:text-white" %>
+
+<script>
+  var settings = {
+    plugins: {
+      'clear_button':{
+        'title':'Eliminar todas las opciones seleccionadas',
+      },
+      remove_button:{
+        title:'Remove this item',
+      }
+    },
+    create: true,
+    onDelete: function(values) {
+      return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+    }
+  };
+  new TomSelect('#categoryselect',settings);
+</script>

@@ -38,6 +38,17 @@ class ProductsController < ApplicationController
         @categories.push(opt)
       end
     end
+
+    if params[:category_id]
+      cat = Category.find_by(id: params[:category_id])
+      pcat = CategoryProduct.new
+      pcat.category_id = params[:category_id]
+      pcat.product_id = @product.id
+      pcat.save
+
+      redirect_to edit_product_url(@product)
+    end
+
   end
 
   # POST /products or /products.json
@@ -98,6 +109,15 @@ class ProductsController < ApplicationController
       end
       format.json { head :no_content }
     end
+  end
+
+  def deleteCategory
+    @product = Product.find_by(id: params[:product_id])
+    @category = CategoryProduct.find_by(category_id: params[:category_id], product_id: params[:product_id])
+    @category.destroy
+    # puts("El producto a eliminar es #{@category.id}")
+    redirect_to edit_product_path(@product)
+
   end
 
   private

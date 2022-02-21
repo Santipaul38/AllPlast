@@ -42,25 +42,25 @@
   <% else %>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Categoria/s:</strong>
-      <%for c in product.categories%>
-        <%= c.name %>,
-      <%end%>
-    </p>
-
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Descripción:</strong>
+      <strong class="block font-medium mb-1">Nombre:</strong>
       <%= product.name %>
     </p>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Precio:</strong>
+      <strong class="block font-medium mb-1">Precio proveedor:</strong>
       $<%= product.price %>
     </p>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Stock:</strong>
+      <strong class="block font-medium mb-1">Stock disponible:</strong>
       <%= product.stock %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Categoria/s:</strong>
+      <%for c in product.categories%>
+        <%= c.name %>,
+      <%end%>
     </p>
 
     <p class="my-5">
