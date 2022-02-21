@@ -13,31 +13,89 @@
 
   <div class="my-5">
     <%= form.label :nombre %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true %>
   </div>
 
   <div class="my-5">
     <%= form.label :precio %>
-    <%= form.text_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true, step: :any %>
   </div>
 
   <div class="my-5">
     <%= form.label :stock %>
-    <%= form.number_field :stock, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :stock, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true %>
   </div>
 
-  <div class="my-5">
-      <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name, {}, {multiple: true}) do |ds| %>
-          <%= ds.label(class:"container") do %>
-            <%= ds.check_box %>
-            <%= ds.object.name %>
-          <% end %>
-        <% end %>
-  </div>
+  <%if action_name == "new" %>
+    <div class="my-5">
+      <%= form.label :category_ids %>
+      <%= form.select(:category_ids, @categories, {}, {id: 'categoryselect', multiple: true, required: true, class: "mt-2"}) %>
+    </div>
 
-  <div class="inline">
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
+  <%else%>
+    <div>
+      <label for="my-modal" class="btn modal-button btn-primary w-full">Añadir Categoria</label>
+      <input type="checkbox" id="my-modal" class="modal-toggle">
+      <div class="modal">
+        <div class="modal-box h-max pb-10">
+          <strong class="block font-medium text-xl mb-1 mr-1">Agregar Categoria:</strong>
+          <%= render "selectCategories", product: @product %>
+          <div class="modal-action">
+            <label for="my-modal" class="btn w-full">Cancelar</label>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<% end %>
+  <%end%>
 
+  <%if @product.categories.count > 0 %>
+    <div class="mt-10 py-8 border-t border-black">
+      <h1 class="font-bold text-2xl mb-3">Categorías a las que pretenece el producto</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th colspan="1"/>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% for category in @product.categories %>
+            <tr class="render-rows">
+              <td><%= category.name %></td>
+              
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+    <%end%>
+    
+    <div class="inline">
+      <% if action_name == "new" %>
+        <button class="btn btn-primary"><%=form.submit style: "display:none"%>Crear Producto</button>
+      <% else %>
+        <button class="btn btn-primary"><%=form.submit style: "display:none"%>Actualizar Producto</button>
+      <%end%>
+    </div>
+
+  <% end %>
+
+<script>
+  var settings = {
+    plugins: {
+      'clear_button':{
+        'title':'Eliminar todas las opciones seleccionadas',
+      },
+      remove_button:{
+        title:'Remove this item',
+      }
+    },
+    create: true,
+    onDelete: function(values) {
+      return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+    }
+  };
+  new TomSelect('#categoryselect',settings);
+</script>

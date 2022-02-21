@@ -6,10 +6,10 @@
 
     <%= render @sale %>
 
-    <%= link_to 'Editar', edit_sale_path(@sale), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Editar', edit_sale_path(@sale), class: "btn rounded-lg py-4 px-5 bg-gray-100 inline-block font-medium text-black hover:text-white" %>
     <div class="inline-block ml-2">
       <%= button_to '× Eliminar venta ×', sale_path(@sale), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-500 font-medium" %>
     </div>
-    <%= link_to '❮ Volver', sales_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to '❮ Volver', sales_path, class: "btn rounded-lg py-4 px-5 bg-gray-100 inline-block font-medium text-black hover:text-white" %>
   </div>
 </div>

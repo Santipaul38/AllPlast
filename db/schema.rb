@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_29_140654) do
+ActiveRecord::Schema.define(version: 2022_02_21_195415) do
+
+  create_table "bill_items", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "bill_id", null: false
+    t.integer "sale_detail_id", null: false
+    t.index ["bill_id"], name: "index_bill_items_on_bill_id"
+    t.index ["sale_detail_id"], name: "index_bill_items_on_sale_detail_id"
+  end
 
   create_table "bills", force: :cascade do |t|
     t.float "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sale_id", null: false
+    t.datetime "date", precision: 6
     t.index ["sale_id"], name: "index_bills_on_sale_id"
   end
 
@@ -48,20 +58,20 @@ ActiveRecord::Schema.define(version: 2022_01_29_140654) do
   create_table "price_lists", force: :cascade do |t|
     t.datetime "date", precision: 6
     t.float "percentage"
-    t.string "name"
-    t.datetime "expiration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "expiration_date", precision: 6
+    t.string "name"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.integer "stock"
-    t.integer "state"
     t.datetime "registration_date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "state"
     t.integer "max_stock"
   end
 
@@ -93,6 +103,8 @@ ActiveRecord::Schema.define(version: 2022_01_29_140654) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bill_items", "bills"
+  add_foreign_key "bill_items", "sale_details"
   add_foreign_key "bills", "sales"
   add_foreign_key "category_products", "categories"
   add_foreign_key "category_products", "products"

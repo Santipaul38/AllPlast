@@ -10,4 +10,13 @@ class Sale < ApplicationRecord
                         :client_id,
                         :price_list_id,
                         message: 'Ingresar el dato correspondiente'
+
+  def totalPrice
+    total = 0
+    for detail in self.sale_details
+      total += detail.import
+    end
+    return total.round(2)
+  end
+  
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bill_items
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/login'

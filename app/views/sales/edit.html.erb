@@ -1,84 +1,88 @@
-<div class="mx-auto md:w-2/3 bg-transparent w-full divide-y-2">
-  <div class="flex flex-col editSale pb-8">
-    <h1 class="font-bold text-4xl text-center">Editando Venta</h1>
-    <div class=" flex flex-row justify-center">
-      <p class="my-5 flex flex-row text-xl">
-        <strong class="block font-medium mb-1 mr-1">Cliente:</strong>
-        <%= @sale.client.name %> <%= @sale.client.surname %>
-      </p>
+<div class="flex flex-col w-full items-center">
+  <div class="mx-auto md:w-2/3 bg-transparent w-full divide-y-2">
+    <div class="flex flex-col editSale pb-8">
+      <h1 class="font-bold text-4xl text-center">Editando Venta</h1>
+      <div class=" flex flex-row justify-center">
+        <p class="my-5 flex flex-row text-xl">
+          <strong class="block font-medium mb-1 mr-1">Cliente:</strong>
+          <%= @sale.client.name %> <%= @sale.client.surname %>
+        </p>
 
-      <p class="my-5 ml-5 flex flex-row text-xl">
-        <strong class="block font-medium mb-1 mr-1">Lista de precios:</strong>
-        <%= @sale.price_list.name %>
-      </p>
-    </div>
-    <div>
-      <label for="my-modal" class="btn modal-button btn-primary w-full">Añadir Producto</label>
-      <input type="checkbox" id="my-modal" class="modal-toggle">
-      <div class="modal">
-        <div class="modal-box h-max pb-10">
-          <strong class="block font-medium text-xl mb-1 mr-1">Agregar Productos:</strong>
-          <%= render "prodForm", sale: @sale %>
-          <div class="modal-action">
-            <label for="my-modal" class="btn w-full">Cancelar</label>
+        <p class="my-5 ml-5 flex flex-row text-xl">
+          <strong class="block font-medium mb-1 mr-1">Lista de precios:</strong>
+          <%= @sale.price_list.name %>
+        </p>
+      </div>
+      <div>
+        <label for="my-modal" class="btn modal-button btn-primary w-full">Añadir Producto</label>
+        <input type="checkbox" id="my-modal" class="modal-toggle">
+        <div class="modal">
+          <div class="modal-box h-max pb-10">
+            <strong class="block font-medium text-xl mb-1 mr-1">Agregar Productos:</strong>
+            <%= render "prodForm", sale: @sale %>
+            <div class="modal-action">
+              <label for="my-modal" class="btn w-full">Cancelar</label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <%if params[:product_id] %>
-      <input type="checkbox" checked="checked" id="my-modal2" class="modal-toggle">
-      <div class="modal">
-        <div class="modal-box h-max pb-10">
-          <strong class="block font-medium text-xl mb-1 mr-1">Agregar Productos:</strong>
-          <%= render "quantityForm", sale: @sale %>
-          <div class="modal-action">
-            <label for="my-modal2" class="btn w-full">Cancelar</label>
+      <%if params[:product_id] %>
+        <input type="checkbox" checked="checked" id="my-modal2" class="modal-toggle">
+        <div class="modal">
+          <div class="modal-box h-max pb-10">
+            <strong class="block font-medium text-xl mb-1 mr-1">Agregar Productos:</strong>
+            <%= render "quantityForm", sale: @sale %>
+            <div class="modal-action">
+              <label for="my-modal2" class="btn w-full">Cancelar</label>
+            </div>
           </div>
         </div>
-      </div>
+      <%end%>
+    </div>
+
+    <%if @sale.products.count > 0 %>
+    <div class="mt-5">
+      <h1 class="font-bold text-2xl mb-3">Productos añadidos en la venta</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Fecha de registro</th>
+            <th colspan="1"/>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% for detail in @sale.sale_details %>
+            <% product = Product.where(:id => detail.product_id).first %>
+            <tr class="render-rows">
+              <td><%= product.name %></td>
+              <td>$<%= product.price %></td>
+              <td><%= detail.unit %></td>
+              <td><%= product.registration_date.strftime("%d/%m/%Y %H:%M") %></td>
+              <td>
+                <%= button_to raw('
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                '), 
+                sales_deleteDetail_path(:detail_id => detail.id, :sale_id => @sale.id), class: "btn btn-ghost" %>
+              </td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
     <%end%>
   </div>
 
-  <%if @sale.products.count > 0 %>
-  <div class="mt-5 pb-8">
-    <h1 class="font-bold text-2xl mb-3">Productos añadidos en la venta</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Descripción</th>
-          <th>Precio</th>
-          <th>Cantidad</th>
-          <th>Fecha de registro</th>
-          <th colspan="1"/>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% for detail in @sale.sale_details %>
-          <% product = Product.where(:id => detail.product_id).first %>
-          <tr class="render-rows">
-            <td><%= product.name %></td>
-            <td>$<%= product.price %></td>
-            <td><%= detail.unit %></td>
-            <td><%= product.registration_date.strftime("%d/%m/%Y %H:%M") %></td>
-            <td>
-              <%= button_to raw('
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-              '), 
-              sales_deleteDetail_path(:detail_id => detail.id, :sale_id => @sale.id), class: "btn btn-ghost" %>
-            </td>
-          </tr>
-        <%end%>
-      </tbody>
-    </table>
+  <div class="w-2/3 mt-8 flex items-start">
+    <%= link_to '❮ Volver', sales_path, class: "btn rounded-lg py-4 px-5 bg-gray-100 inline-block font-medium text-black hover:text-white" %>
   </div>
-  <%end%>
-
 </div>
-
 <script>
   function puts(e){
     

@@ -17,6 +17,10 @@
   </div>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <% if action_name == "new" %>
+      <button class="btn btn-primary"><%=form.submit style: "display:none"%>Crear Categoría</button>
+    <% else %>
+      <button class="btn btn-primary"><%=form.submit style: "display:none"%>Actualizar Categoría</button>
+    <%end%>
   </div>
 <% end %>

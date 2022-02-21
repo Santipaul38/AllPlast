@@ -22,7 +22,7 @@
             <progress class="progress progress-warning w-56" value="40" max="100"></progress>
           <% when 5..25%>
             <progress class="progress progress-error w-56" value="10" max="100"></progress>
-          <% when 0%>
+          <% when 0..5%>
             <progress class="progress w-56" value="0" max="100"></progress>
           <%end%>
         </div>
@@ -30,11 +30,11 @@
 
 
       <td>
-      <div class="btn-group place-content-end">
-        <%= link_to "Ver", product, class: "btn" %>
-        <%= link_to 'Editar', edit_product_path(product), class: "btn" %>
-        <%= button_to '× Eliminar producto ×', product, method: :delete, class: "btn hover:bg-red-500  rounded-l-none" %>
-      </div> 
+        <div class="btn-group place-content-end">
+          <%= link_to "Ver", product, class: "btn" %>
+          <%= link_to 'Editar', edit_product_path(product), class: "btn" %>
+          <%= button_to '× Eliminar producto ×', product, method: :delete, class: "btn hover:bg-red-500  rounded-l-none" %>
+        </div> 
       <td>
     </tr>
       
@@ -43,7 +43,9 @@
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Categoria/s:</strong>
-      
+      <%for c in product.categories%>
+        <%= c.name %>,
+      <%end%>
     </p>
 
     <p class="my-5">

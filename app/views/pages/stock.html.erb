@@ -11,7 +11,7 @@
 
                     <form action="" method="">
                         <select id="form-control-lg" name="product_id" placeholder="Elija el producto..." autocomplete="off" class="mb-4 form-control-lg">
-                            <%= options_from_collection_for_select(Product.all, 'id', 'name') %>
+                            <%= options_from_collection_for_select(Product.where(:state => 0), 'id', 'name') %>
                         </select>
                     <div class="flex flex-row justify-end space-x-3">    
                         <button class="btn btn-primary" type="submit" value="Save">Mostrar</button>

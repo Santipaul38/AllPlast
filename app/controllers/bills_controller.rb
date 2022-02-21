@@ -3,7 +3,8 @@ class BillsController < ApplicationController
 
   # GET /bills or /bills.json
   def index
-    @bills = Bill.all
+    # @bills = Bill.all
+    redirect_to sales_path
   end
 
   # GET /bills/1 or /bills/1.json
@@ -20,9 +21,16 @@ class BillsController < ApplicationController
   # POST /bills or /bills.json
   def create
     @bill = Bill.new(bill_params)
+    @bill.date = DateTime.now - 3.hours
 
     respond_to do |format|
       if @bill.save
+        for d in @bill.sale.sale_details
+          item = BillItem.new
+          item.bill_id = @bill.id
+          item.sale_detail_id = d.id
+          item.save
+        end
         format.html do
           redirect_to bill_url(@bill),
                       notice: 'La factura fue creada satisfactoriamente.'
@@ -53,7 +61,7 @@ class BillsController < ApplicationController
 
   # DELETE /bills/1 or /bills/1.json
   def destroy
-    @bill.destroy
+    # @bill.destroy
 
     respond_to do |format|
       format.html do
@@ -73,6 +81,6 @@ class BillsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def bill_params
-    params.require(:bill).permit(:total, :sale_id)
+    params.require(:bill).permit(:total, :sale_id, :date)
   end
 end

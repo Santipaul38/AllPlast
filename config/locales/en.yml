@@ -38,6 +38,7 @@ en:
         price: "Precio"
         stock: "Cantidad"
         registration_date: "Fecha de Registro"
+        category_ids: "Categorías"
       bill:
         total: "Total"
       category:
@@ -50,6 +51,7 @@ en:
         email: "E-mail"
       price_list:
         date: "Fecha de Registro"
+        name: "Nombre"
         percentage: "Porcentaje de carga"
         expiration_date: "Fecha de Vencimiento"
       sale_detail:

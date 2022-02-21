@@ -3,7 +3,7 @@ class SalesController < ApplicationController
 
   # GET /sales or /sales.json
   def index
-    @sales = Sale.all
+    @sales = Sale.all.order(date: :desc)
   end
 
   # GET /sales/1 or /sales/1.json
@@ -41,12 +41,12 @@ class SalesController < ApplicationController
     if params[:product_id] and params[:quantity]
       priceListPercentage = (PriceList.where(:id => @sale.price_list_id).first.percentage / 100)
       productPrice = Product.where(:id => params[:product_id]).first.price
-      totalPrice = productPrice + (productPrice * priceListPercentage)
+      totalPrice = productPrice.to_f + (productPrice.to_f * priceListPercentage)
       saleDetail = SaleDetail.new
       saleDetail.product_id = params[:product_id]
       saleDetail.sale_id = params[:id]
       saleDetail.unit = params[:quantity]
-      saleDetail.import = (params[:quantity] * totalPrice).to_f
+      saleDetail.import = (params[:quantity].to_i * totalPrice).to_f
       saleDetail.save
       
       product = Product.find_by(:id => params[:product_id])

@@ -12,11 +12,33 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
-    @categories = Category.all
+    @categories = []
+
+    for c in Category.all
+      name = c.name
+      id = c.id
+      opt = [name, id]
+
+      @categories.push(opt)
+    end
   end
 
   # GET /products/1/edit
-  def edit; end
+  def edit; 
+    @categories = []
+
+    for c in Category.all
+      p = CategoryProduct.find_by(:product_id => @product.id, :category_id => c.id)
+      
+      name = c.name
+      id = c.id
+      opt = [name, id]
+
+      if !p
+        @categories.push(opt)
+      end
+    end
+  end
 
   # POST /products or /products.json
   def create

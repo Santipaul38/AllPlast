@@ -1,0 +1,12 @@
+<form action="" method="edit">
+    <select id="form-control-lg" name="category_ids" placeholder="Elija categoría..." required autocomplete="off" class="mb-4">
+        <option value=""></option>
+        <% for c in @categories %>
+            <option value="<%=c[1]%>"><%=c[0]%></option>
+        <%end%>
+    </select>
+
+    <div class="flex flex-row pt-3">    
+        <button class="btn btn-primary w-full" type="submit">Seleccionar</button>
+    </div>
+</form>

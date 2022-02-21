@@ -13,16 +13,16 @@
 
   <div class="my-5">
     <%= form.label :cliente %>
-    <%= form.select(:client_id, @clients, {}, {id: 'clientselect'}) %>
+    <%= form.select(:client_id, @clients, {}, {id: 'clientselect', required: true}) %>
   </div>
 
   <div class="my-5">
     <%= form.label :price_list_id %>
-    <%= form.select(:price_list_id, @lists, {}, {id: 'listselect'}) %>
+    <%= form.select(:price_list_id, @lists, {}, {id: 'listselect', required: true}) %>
   </div>
 
   <div class="inline ">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <button class="btn btn-primary"><%=form.submit style: "display:none"%>Crear Venta</button>
   </div>
 
 <% end %>

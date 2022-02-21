@@ -14,6 +14,43 @@
       <strong class="block font-medium mb-1">Total:</strong>
       $<%= bill.total %>
     </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Fecha:</strong>
+      <%= bill.date.strftime("%D - %H:%m hs.") %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Cliente:</strong>
+      <%= bill.sale.client.name %> <%= bill.sale.client.surname %>
+    </p>
+
+    <div class="my-10">
+      <h1 class="font-bold text-2xl mb-3">Productos de la venta</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Fecha de registro</th>
+            <th colspan="1"/>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% for detail in bill.sale.sale_details %>
+            <% product = Product.where(:id => detail.product_id).first %>
+            <tr class="render-rows">
+              <td><%= product.name %></td>
+              <td>$<%= product.price %></td>
+              <td><%= detail.unit %></td>
+              <td><%= product.registration_date.strftime("%d/%m/%Y %H:%M") %></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
   
   <%end%>
 </div>

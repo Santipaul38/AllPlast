@@ -13,15 +13,19 @@
 
   <div class="my-5">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true %>
   </div>
 
   <div class="my-5">
     <%= form.label :porcentaje %>
-    <%= form.number_field :percentage, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :percentage, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true %>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <% if action_name == "new" %>
+      <button class="btn btn-primary"><%=form.submit style: "display:none"%>Crear Lista</button>
+    <% else %>
+      <button class="btn btn-primary"><%=form.submit style: "display:none"%>Actualizar Lista</button>
+    <%end%>
   </div>
 <% end %>
