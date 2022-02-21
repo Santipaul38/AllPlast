@@ -30,15 +30,14 @@
 <script>
   var settings = {
     plugins: {
-      'clear_button':{
-        'title':'Eliminar todas las opciones seleccionadas',
+        'clear_button':{
+          'title':'Eliminar todas las opciones seleccionadas',
+        },
       },
-    },
-    create: true,
-    onDelete: function(values) {
-      return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
-    }
-  };
+      onDelete: function(values) {
+        return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+      }
+    };
   new TomSelect('#clientselect',settings);
   new TomSelect('#listselect',settings);
 </script>

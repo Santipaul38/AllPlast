@@ -10,10 +10,21 @@
 
     <%= link_to 'Editar', edit_sale_path(@sale), class: "btn rounded-lg py-4 px-5 bg-gray-100 inline-block font-medium text-black hover:text-white" %>
     <% if !bill %>
-      <div class="inline-block ml-2">
-        <%= button_to '× Eliminar venta ×', sale_path(@sale), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-500 font-medium" %>
+      <div class="inline-block mx-4">
+        <label for="modal-2" class="btn modal-button hover:bg-red-500 hover:text-black">x ELIMINAR x</label>
       </div>
     <%end %>
     <%= link_to '❮ Volver', sales_path, class: "btn rounded-lg py-4 px-5 bg-gray-100 inline-block font-medium text-black hover:text-white" %>
   </div>
 </div>
+
+<input class="modal-toggle" type="checkbox" id="modal-2"></input>
+  <div id="modal-2" class="modal">
+    <div class="modal-box">
+      <p class="text-xl">Estas a punto de eliminar la venta de: <strong><%= @sale.client.name %> <%= @sale.client.surname %><strong> </p> 
+      <div class="modal-action">
+        <label for="modal-2" class="btn">Cancelar</label>
+        <%= button_to 'Borrar', sale_path(@sale), method: :delete, class: "btn bg-red-500" %>
+      </div>
+    </div>
+  </div>

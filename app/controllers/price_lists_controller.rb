@@ -60,7 +60,7 @@ class PriceListsController < ApplicationController
 
   # DELETE /price_lists/1 or /price_lists/1.json
   def destroy
-    @price_list.destroy
+    @price_list.update(expiration_date: (DateTime.now - 3.hours))
 
     respond_to do |format|
       format.html { redirect_to price_lists_url, notice: "La lista de precios fue satisfactoriamente eliminada." }

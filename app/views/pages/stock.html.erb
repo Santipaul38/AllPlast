@@ -29,7 +29,7 @@
 
                     <form action="" method="">
                         <select id="form-modal-2" name="product_id" placeholder="Elija el producto..." autocomplete="off" class="mb-4 form-modal-2">
-                            <%= options_from_collection_for_select(Product.all, 'id', 'name') %>
+                            <%= options_from_collection_for_select(Product.where(:state => 0), 'id', 'name') %>
                         </select>
                         <input type="number" name="quantity" placeholder="Cantidad" class="w-full"></input>
                     <div class="flex flex-row justify-end space-x-3 mt-3">    

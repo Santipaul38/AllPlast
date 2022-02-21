@@ -22,5 +22,11 @@ class Product < ApplicationRecord
               message: 'debe ser un número.',
             }
 
+  validate :exist
+
+  def exist
+    return false
+  end
+  
   
 end

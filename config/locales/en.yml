@@ -59,3 +59,4 @@ en:
         import: "Importe"
       sale:
         date: "Fecha de Registro"
+        price_list_id: "Lista de precios"

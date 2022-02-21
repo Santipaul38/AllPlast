@@ -64,7 +64,7 @@ class ClientsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to clients_url, notice: "El cliente no pudo eliminarse porque tiene asociado una venta." }
+        format.html { redirect_to client_url(@client), notice: "El cliente no pudo eliminarse porque tiene asociado una venta." }
         format.json { head :no_content }
       end
     end

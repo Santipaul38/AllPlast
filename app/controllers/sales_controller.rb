@@ -24,7 +24,7 @@ class SalesController < ApplicationController
       @clients.push(opt)
     end
 
-    for l in PriceList.all
+    for l in PriceList.where(expiration_date: nil)
       name = l.name
       id = l.id
       opt = [name, id]

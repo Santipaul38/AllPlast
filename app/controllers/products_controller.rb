@@ -97,7 +97,6 @@ class ProductsController < ApplicationController
   def destroy
     if SaleDetail.where(:product_id => @product.id).count == 0
       CategoryProduct.where(product_id: @product.id).destroy_all
-      @product.destroy
     else
       @product.update(:state => 2)
     end
