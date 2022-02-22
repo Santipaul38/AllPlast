@@ -5,11 +5,6 @@ class Product < ApplicationRecord
   has_many :sale_details
   has_many :sales, through: :sale_details
 
-  validates_presence_of :name,
-                        :price,
-                        :stock,
-                        :category_ids,
-                        message: 'Ingresar el dato correspondiente.'
   validates :name,
             format: {
               with: /\A[a-z0-9\s]+\Z/i,
@@ -22,11 +17,6 @@ class Product < ApplicationRecord
               message: 'debe ser un número.',
             }
 
-  validate :exist
-
-  def exist
-    return false
-  end
-  
+  validates :name, uniqueness: { message: ": Este producto ya existe" }
   
 end

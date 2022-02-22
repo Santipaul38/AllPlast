@@ -5,6 +5,13 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Categorías</h1>
+  </div>
+
+  <div class="my-6 w-full flex justify-between">
+    <form class="flex flex-row space-x-4 place-items-center justify-start">
+      <input class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2" placeholder="Busqueda por nombre" name="name" type="text">
+      <input type="submit" class="btn bglime" value="Buscar">
+    </form>
     <%= link_to 'Cargar categoría ⭱', new_category_path, class: "btn btn-primary" %>
   </div>
 

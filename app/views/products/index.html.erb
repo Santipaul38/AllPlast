@@ -5,11 +5,25 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Productos</h1>
+  </div>
+
+  <div class="my-6 w-full flex justify-between">
+    <form class="flex flex-row space-x-4 place-items-center justify-start">
+      <input class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2" placeholder="Busqueda por nombre" name="name" type="text">
+      <select class="w-60" id="categoryselect" placeholder="Busqueda por categoría" name="cat" type="text">
+        <%= options_for_select(@cats) %>
+      </select>
+      <input type="submit" class="btn bglime" value="Buscar">
+    </form>
     <%= link_to 'Cargar producto ⭱', new_product_path, class: "btn btn-primary " %>
   </div>
 
-  <br>
-
+  <%if params[:cat] and Category.find_by(:id => params[:cat]) %>
+    <div class="mb-6 text-xl space-x-2 flex flex-row">
+      <strong>Categoría:</strong> 
+      <h1><%= Category.find_by(:id => params[:cat]).name %></h1>
+    </div>
+  <%end%>
   <table>
     <thead>
       <tr>
@@ -27,3 +41,9 @@
   </table>
 
 </div>
+
+<script>
+  var settings = {
+  };
+  new TomSelect('#categoryselect',settings);
+</script>

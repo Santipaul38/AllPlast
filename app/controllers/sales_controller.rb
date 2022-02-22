@@ -4,6 +4,17 @@ class SalesController < ApplicationController
   # GET /sales or /sales.json
   def index
     @sales = Sale.all.order(date: :desc)
+
+    if params[:name]
+      @salesF = []
+      for s in @sales
+        name = "#{s.client.surname} #{s.client.name}".downcase
+        if name.include?(params[:name].downcase) == true
+          @salesF.push(s)
+        end
+      end
+      @sales = @salesF
+    end
   end
 
   # GET /sales/1 or /sales/1.json

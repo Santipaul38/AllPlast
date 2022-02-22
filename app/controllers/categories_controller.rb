@@ -4,6 +4,12 @@ class CategoriesController < ApplicationController
   # GET /categories or /categories.json
   def index
     @categories = Category.all
+
+    if params[:name]
+      @categories= @categories.where('name LIKE ?', "%#{params[:name]}%")
+    end
+
+
   end
 
   # GET /categories/1 or /categories/1.json
@@ -49,7 +55,7 @@ class CategoriesController < ApplicationController
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
-    reg = CategoryProduct.where(category_id: @category.id)
+    reg = CategoryProduct.where(category_id: @category.id).first
 
     if !reg
       @category.destroy

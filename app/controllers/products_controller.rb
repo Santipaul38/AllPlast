@@ -4,6 +4,37 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.where(:state => 0)
+
+    if params[:name]
+      @products= @products.where('name LIKE ?', "%#{params[:name]}%")
+    end
+    if params[:cat] and params[:cat] != '-1'
+      @prods = []
+      for p in @products
+        exist = 0
+        for c in p.categories
+          if c.id.to_i == params[:cat].to_i
+            exist = 1
+          end
+        end
+        if exist == 1
+          @prods.push(p)
+        end
+      end
+      @products = @prods
+    end
+
+
+
+    @cats = [['Busqueda por categoría', -1]]
+    for c in Category.all
+      name = c.name
+      id = c.id
+      opt = [name, id]
+      @cats.push(opt)
+    end
+
+
   end
 
   # GET /products/1 or /products/1.json
