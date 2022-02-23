@@ -8,9 +8,9 @@
 
     <%bill = Bill.find_by(sale_id: @sale.id)%>
 
-    <%= link_to 'Editar', edit_sale_path(@sale), class: "btn rounded-lg py-4 px-5 bg-gray-100 inline-block font-medium text-black hover:text-white" %>
     <% if !bill %>
       <div class="inline-block mx-4">
+        <%= link_to 'Editar', edit_sale_path(@sale), class: "btn rounded-lg py-4 px-5 bg-gray-100 inline-block font-medium text-black hover:text-white" %>
         <label for="modal-2" class="btn modal-button hover:bg-red-500 hover:text-black">x ELIMINAR x</label>
       </div>
     <%end %>

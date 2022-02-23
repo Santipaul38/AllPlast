@@ -1,3 +1,7 @@
+<% if Bill.find_by(:sale_id => @sale.id) %>
+  <%= redirect_to sales_path %>
+<%end%>
+
 <div class="flex flex-col w-full items-center">
   <div class="mx-auto md:w-2/3 bg-transparent w-full divide-y-2">
     <div class="flex flex-col editSale pb-8">
@@ -94,7 +98,6 @@
         'title':'Eliminar todas las opciones seleccionadas',
       },
     },
-    create: true,
     onDelete: function(values) {
       return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
     }

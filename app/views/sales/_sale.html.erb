@@ -13,15 +13,15 @@
           <%= sale.bill.id %>
         <% end %>
       </td>
-      <td><%= sale.date.strftime("%D - %H:%m hs.") %></td>
+      <td><%= sale.date.strftime("%d/%m/%Y - %H:%M hs.") %></td>
       <td>$<%= sale.totalPrice %></td>
 
       <td>
         <div class="btn-group place-content-end">
           <%= link_to "Ver", sale, class: "btn" %>
-          <%= link_to 'Editar', edit_sale_path(sale), class: "btn" %>
           <%case bill%>
             <%when nil%>
+              <%= link_to 'Editar', edit_sale_path(sale), class: "btn" %>
               <%= link_to 'Generar Comprobante', new_bill_path(sale: sale.id), class: "btn hover:bg-red-500  rounded-l-none" %>
             <%else%>
               <%= link_to 'Ver Comprobante', bill_path(id: sale.bill.id), method: :delete, class: "btn hover:bg-red-500  rounded-l-none" %>

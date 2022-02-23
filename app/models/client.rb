@@ -3,7 +3,7 @@ class Client < ApplicationRecord
 
     validates_presence_of :name, :surname, :phone_number, :email, message: "Ingresar el dato correspondiente" 
     validates :name, :surname, format: { with: /\A[a-z]+\z/i, message: "debe contener letras." }
-    validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+    validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create, message: "no cumple con el formato adecuado" }
     validates :name, :uniqueness => {:scope => :surname, message: ": El cliente ya existe"}
 
 end

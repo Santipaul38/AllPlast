@@ -92,10 +92,10 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.save
         format.html do
-          redirect_to product_url(@product),
+          redirect_to edit_product_url(@product),
                       notice: 'El producto fue satisfactoriamente creado.'
         end
-        format.json { render :show, status: :created, location: @product }
+        format.json { render :edit, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json do
@@ -126,10 +126,16 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1 or /products/1.json
   def destroy
+    puts("Producto a borrar #{@product.name}")
+    
+    
     if SaleDetail.where(:product_id => @product.id).count == 0
       CategoryProduct.where(product_id: @product.id).destroy_all
+      @product.destroy
+      puts("IF")
     else
-      @product.update(:state => 2)
+      puts("ELSE")
+      @product.update(state: 2)
     end
 
     respond_to do |format|

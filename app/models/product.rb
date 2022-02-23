@@ -5,11 +5,6 @@ class Product < ApplicationRecord
   has_many :sale_details
   has_many :sales, through: :sale_details
 
-  validates :name,
-            format: {
-              with: /\A[a-z0-9\s]+\Z/i,
-              message: 'debe contener letras y/o números.',
-            }
   validates :price,
             numericality: {
               only_float: true,
@@ -17,6 +12,6 @@ class Product < ApplicationRecord
               message: 'debe ser un número.',
             }
 
-  validates :name, uniqueness: { message: ": Este producto ya existe" }
+  validates :name, uniqueness: {:scope => :state, message: ": Este producto ya existe", on: :create }
   
 end
